@@ -30,7 +30,7 @@ function Week() {
       username: "Kattis",
       password: "123456789"
     }})
-    setValues(values.data);
+    //setValues(values.data);
     console.log(values.data);
   };
 /*
@@ -120,7 +120,7 @@ function Week() {
           </InputLabel>
           <OutlinedInput
             label="dayDate"
-          //  value={values.dayDate}
+            value={values.dayDate}
             onChange={handleChange("dayDate")}
             sx={{ borderRadius: "29px" }}
           />
@@ -133,7 +133,7 @@ function Week() {
           </InputLabel>
           <OutlinedInput
             label="acticity"
-           // value={values.activity}
+            value={values.activity}
             onChange={handleChange("activity")}
             sx={{ borderRadius: "29px" }}
           />
@@ -146,7 +146,7 @@ function Week() {
           </InputLabel>
           <OutlinedInput
             label="possible"
-         //   value={values.possible}
+            value={values.possible}
            onChange={handleChange("possible")}
             sx={{ borderRadius: "29px" }}
           />
