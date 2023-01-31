@@ -29,25 +29,15 @@ export default function Login() {
 		}
 	}
 
-	function SuccessMessageComponent(){
-		if(showSuccessMessage)
-			return <div className="successMessage">Authenticated Successfully</div>
-		return null
-		}
-
-	function ErrorMessageComponent(){
-			if(showErrorMessage)
-				return <div className="errorMessage">Authentication Failed. Please check credentials</div>
-			return null
-	}
-
 
   return (
 
     <div className="Login">
-		<SuccessMessageComponent/>
-		<ErrorMessageComponent/>
-      <div className="LoginForm">
+		
+		{showSuccessMessage && <div className="successMessage">Authenticated Successfully</div> }
+		{showErrorMessage && <div className="errorMessage">Authentication Failed. Please check credentials</div> }
+     
+	  <div className="LoginForm">
         <div>
           <label>User name</label>
           <input type="text" name="username" value={username} onChange={handleUsernameChange} />
