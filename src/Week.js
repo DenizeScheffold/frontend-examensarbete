@@ -30,14 +30,9 @@ function Week() {
       username: "Kattis",
       password: "123456789"
     }})
-    //setValues(values.data);
     console.log(values.data);
   };
-/*
-  const handleChange = (prop) => (e) => {
-    setValues({ ...values, [prop]: e.target.value });
-  };
-  */
+
  /* const [weekInfo, setWeekInfo] = useState([]);
 
 
@@ -45,18 +40,6 @@ function Week() {
       loadWeek();
     });
 
-
-    const loadWeek = async () => {
-
-      /*  const result = await axios.post(`http://localhost:8080/.....`, {}, {auth: {
-        username: "user",
-        password: "fc5ad5bb-4447-4054-86d4-c1944366c0df"
-      }});
-      setWeekInfo(result.data);
-    }
-    
-    const handleSetWeek = () => {
-  */
 
      /* const d = new Date();
       Date.prototype.getWeek = function() {

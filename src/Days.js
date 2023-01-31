@@ -42,7 +42,7 @@ export default function SwitchesGroup() {
           date: "2023-01-23",
           activity: 2,
           possible: true
-            //firstName: values.firstname, lastname: values.lastname, email: values.email, password: values.password, role:"USER"
+           
         },{auth: {
           username: "user",
           password: "7c2313ae-2818-404b-8767-e97d83b33403"
