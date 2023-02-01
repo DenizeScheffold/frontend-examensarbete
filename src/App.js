@@ -1,7 +1,7 @@
 import React from "react";
 //import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //import Week from './Week';
-import Login from './components/Login';
+import WeekPlanner from './components/WeekPlanner';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router> */}
-      <Login/>
+      <WeekPlanner/>
     </main>
   );
 }

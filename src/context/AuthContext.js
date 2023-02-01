@@ -3,62 +3,59 @@ import { createContext, useContext, useState } from "react";
 import axios from "../api/ApiClient";
 import { executeJwtAuthenticationService } from "../api/AuthenticationApiService";
 
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext)
-
+export const useAuth = () => useContext(AuthContext);
 
 export default function AuthProvider({ children }) {
+  const [isAuthenticated, setAuthenticated] = useState(false);
 
-    const [isAuthenticated, setAuthenticated] = useState(false)
+  const [username, setUsername] = useState(null);
 
-    const [username, setUsername] = useState(null)
+  const [token, setToken] = useState(null);
 
-    const [token, setToken] = useState(null)
+  async function login(username, password) {
+    try {
+      const response = await executeJwtAuthenticationService(
+        username,
+        password
+      );
 
-    async function login(username, password) {
+      if (response.status === 200) {
+        const jwtToken = "Bearer " + response.data.token;
 
-        try {
+        setAuthenticated(true);
+        setUsername(username);
+        setToken(jwtToken);
 
-            const response = await executeJwtAuthenticationService(username, password)
+        axios.interceptors.request.use((config) => {
+          console.log("intercepting and adding a token");
+          config.headers.Authorization = jwtToken;
+          return config;
+        });
 
-            if(response.status===200){
-                
-                const jwtToken = 'Bearer ' + response.data.token
-                
-                setAuthenticated(true)
-                setUsername(username)
-                setToken(jwtToken)
-
-                axios.interceptors.request.use(
-                    (config) => {
-                        console.log('intercepting and adding a token')
-                        config.headers.Authorization = jwtToken
-                        return config
-                    }
-                )
-
-                return true            
-            } else {
-                logout()
-                return false
-            }    
-        } catch(error) {
-            logout()
-            return false
-        }
+        return true;
+      } else {
+        logout();
+        return false;
+      }
+    } catch (error) {
+      logout();
+      return false;
     }
+  }
 
+  function logout() {
+    setAuthenticated(false);
+    setToken(null);
+    setUsername(null);
+  }
 
-    function logout() {
-        setAuthenticated(false)
-        setToken(null)
-        setUsername(null)
-    }
-
-    return (
-        <AuthContext.Provider value={ {isAuthenticated, login, logout, username, token}  }>
-            {children}
-        </AuthContext.Provider>
-    )
-} 
+  return (
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, logout, username, token }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+}

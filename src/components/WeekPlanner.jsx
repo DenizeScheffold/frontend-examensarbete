@@ -6,7 +6,7 @@ import WelcomeComponent from './WelcomeComponent'
 import LoginComponent from './LoginComponent'
 import AuthProvider, { useAuth } from '../context/AuthContext'
 
-import './Login.css'
+import './WeekPlanner.css'
 
 function AuthenticatedRoute({children}) {
     const authContext = useAuth()
@@ -17,9 +17,9 @@ function AuthenticatedRoute({children}) {
     return <Navigate to="/" />
 }
 
-export default function Login() {
+export default function WeekPlanner() {
     return (
-        <div className="Login">
+        <div className="WeekPlanner">
             <AuthProvider>
                 <BrowserRouter>
                     <HeaderComponent />
