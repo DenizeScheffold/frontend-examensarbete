@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import LogoutComponent from './LogoutComponent'
 import HeaderComponent from './HeaderComponent'
 import WelcomeComponent from './WelcomeComponent'
+import WeekComponent from './WeekComponent'
 import LoginComponent from './LoginComponent'
 import AuthProvider, { useAuth } from '../context/AuthContext'
 
@@ -35,6 +36,11 @@ export default function WeekPlanner() {
                         <Route path='/logout' element={
                             <AuthenticatedRoute>
                                 <LogoutComponent /> 
+                            </AuthenticatedRoute>
+                        } />
+                           <Route path='/week' element={
+                            <AuthenticatedRoute>
+                                <WeekComponent /> 
                             </AuthenticatedRoute>
                         } />
                         
