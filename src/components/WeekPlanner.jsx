@@ -25,7 +25,7 @@ export default function WeekPlanner() {
                 <BrowserRouter>
                     <HeaderComponent />
                     <Routes>
-                        <Route path='/' element={ <LoginComponent /> } />
+              
                         <Route path='/login' element={ <LoginComponent /> } />
                         <Route path='/welcome/:username' element={
                             <AuthenticatedRoute>

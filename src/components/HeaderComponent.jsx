@@ -22,14 +22,7 @@ function HeaderComponent() {
               Week Planner
             </a>
             <div className="collapse navbar-collapse">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  {isAuthenticated && (
-                    <Link className="nav-link" to="/welcome/user">
-                      Home
-                    </Link>
-                  )}
-                </li>
+             <ul>
                 <li className="nav-item">
                   {isAuthenticated && (
                     <Link className="nav-link" to="/week">
