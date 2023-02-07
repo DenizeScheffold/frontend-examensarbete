@@ -97,13 +97,10 @@ export default function CreateUser() {
       inputPassword.current.focus();
     }
     else{
-      axios.post("http://localhost:8080/api/saveUser", 
+      axios.post("http://localhost:8080/api/auth/signup", 
       {email: values.email, otherParentId: values.otherParentId, username: values.username, password: values.password, role:"USER"
     },{
-      /* auth: {
-      username: "user",
-      password: "7c2313ae-2818-404b-8767-e97d83b33403"
-    } */})
+    })
     }
 
   };
@@ -276,7 +273,7 @@ export default function CreateUser() {
               }
               label={
                 <Typography>
-                  Jag tillåter att Benny skickar påminnelser om aktiviteter och
+                  Jag tillåter att ni skickar påminnelser om aktiviteter och
                   liknande till min mail
                 </Typography>
               }
@@ -293,7 +290,7 @@ export default function CreateUser() {
               }
               label={
                 <Typography>
-                  Jag godkänner Bennys användarvillkor
+                  Jag godkänner användarvillkoren
                 </Typography>
               }
             />

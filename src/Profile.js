@@ -11,9 +11,11 @@ import { useParams } from "react-router-dom";
 
 function Profile() {
   const [profileInfo, setProfileInfo] = React.useState({
-    firstName: "",
-    lastName: "",
-    email: "",
+    username: "",
+    userId: "",
+    otherParentId: "",
+    email:"",
+    role:"",
   });
 
 
@@ -27,26 +29,16 @@ function Profile() {
     const result = await axios.get(
       `http://localhost:8080/api/getUser/${username}`,
       {},
-      {
-      /*   auth: {
-          username: "user",
-          password: "a7d2538f-a41c-4c76-9043-3798cc170ac5",
-        }, */
-      }
+      {}
     );
     setProfileInfo(result.data);
   };
 
-  const deleteUser = async (id) => {
+  const deleteUser = async (userId) => {
     await axios.delete(
-      `http://localhost:8080/user/deleteuser?id=${id}`,
+      `http://localhost:8080/api/deleteUserById/${userId}`,
       {},
-      {
-       /*  auth: {
-          username: "user",
-          password: "a7d2538f-a41c-4c76-9043-3798cc170ac5",
-        }, */
-      }
+      {}
     );
     loadProfile();
   };
@@ -83,7 +75,7 @@ function Profile() {
 
       <button
         className="btn btn-danger mx-2"
-        onClick={() => deleteUser(profileInfo.id)}
+        onClick={() => deleteUser(profileInfo.userId)}
       >
         Delete
       </button>
