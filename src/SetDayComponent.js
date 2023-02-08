@@ -10,14 +10,16 @@ import Paper from "@mui/material/Paper";
 //import { useParams } from "react-router-dom";
 
 function SetDay() {
-  const [dayInfo, setDayInfo] = React.useState({
+  const [dayInfo, setDayInfo] = React.useState([]
+    /*{
     userId: "",
     dayId: "",
     weekNumber: "",
     dayDate: "",
     activity: "",
     possible: "",
-  });
+  }*/
+  );
   
 
   // let {userId} = useParams();
@@ -35,7 +37,7 @@ function SetDay() {
     );
     console.log(result);
     console.log(result.data[0].userId,);
-    setDayInfo(result.data[0]);
+    setDayInfo(result.data);
   };
 
   return (
@@ -54,20 +56,18 @@ function SetDay() {
           </TableHead>
 
           <TableBody>
-       
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
+          {dayInfo.map((day) => (          
+              <TableRow>
                 <TableCell component="th" scope="row">
-                  {dayInfo.userId}
+                  {day.userId}
                 </TableCell>
-                <TableCell align="right">{dayInfo.dayId}</TableCell>
-                <TableCell align="right">{dayInfo.weekNumber}</TableCell>
-                <TableCell align="right">{dayInfo.dayDate}</TableCell>
-                <TableCell align="right">{dayInfo.activity}</TableCell>
-                <TableCell align="right">{dayInfo.possible}</TableCell>
+                <TableCell align="right">{day.dayId}</TableCell>
+                <TableCell align="right">{day.weekNumber}</TableCell>
+                <TableCell align="right">{day.dayDate}</TableCell>
+                <TableCell align="right">{day.activity}</TableCell>
+                <TableCell align="right">{day.possible}</TableCell>
               </TableRow>
-        
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
