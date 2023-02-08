@@ -6,6 +6,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import {Button } from "@mui/material";
+import DatePicker from "./DatePicker";
 
 
 function Week() {
@@ -29,6 +30,9 @@ function Week() {
     },{})
     console.log(values.data);
   };
+//Get from db and for loop to get days.
+
+
 
  /* const [weekInfo, setWeekInfo] = useState([]);
 
@@ -50,7 +54,8 @@ function Week() {
 
       <div className="App">
 
-
+<div><DatePicker  displayWeekNumber />
+</div>
 
 <form onSubmit={handleSubmit}>
     <Grid
