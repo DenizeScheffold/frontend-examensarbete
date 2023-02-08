@@ -306,19 +306,6 @@ export default function CreateUser() {
             <Typography >SKAPA KONTO</Typography>
           </Button>
         </Grid>
-
-        <Grid item  >
-          <Box sx={{ marginTop: 1 }}>
-            <Typography  sx={{ marginLeft: -1.5 }}>
-              Har du redan ett konto?
-            </Typography>
-          </Box>
-          <Box>
-            <Button variant="contained" >
-              LOGGA IN
-            </Button>
-          </Box>
-        </Grid>
       </Grid>
     </form>
   );

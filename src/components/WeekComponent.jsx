@@ -26,10 +26,7 @@ function Week() {
   const handleSubmit = () => {
       axios.post("http://localhost:8080/api/setPlan", 
       {weekNumber: values.weekNumber, userId: values.userId, dayDate: values.dayDate, activity: values.activity, possible: values.possible
-    },{auth: {
-      username: "Kattis",
-      password: "123456789"
-    }})
+    },{})
     console.log(values.data);
   };
 
