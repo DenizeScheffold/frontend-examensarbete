@@ -26,12 +26,24 @@ function HeaderComponent() {
                 )}
               </li>
             </ul>
+
+                     
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                {isAuthenticated && (
+                  <Link className="nav-link" to="/setdays"> 
+                  {/* to={`/setdays/${authContext.userId}`}> */}
+                    Plan your days
+                  </Link>
+                )}
+              </li>
+            </ul>
             
             <ul className="navbar-nav">
               <li className="nav-item">
                 {isAuthenticated && (
                   <Link className="nav-link" to="/week">
-                    Week Planner
+                    View set plan
                   </Link>
                 )}
               </li>

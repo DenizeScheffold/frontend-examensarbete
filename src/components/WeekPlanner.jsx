@@ -8,6 +8,7 @@ import LoginComponent from "./LoginComponent";
 import Signup from "../Signup";
 import Profile from "../Profile";
 import EditProfile from "../EditProfile";
+import SetDayComponent from "../SetDayComponent";
 import AuthProvider, { useAuth } from "../context/AuthContext";
 
 import "./WeekPlanner.css";
@@ -46,6 +47,14 @@ export default function WeekPlanner() {
                 </AuthenticatedRoute>
               }
             />
+                <Route
+              path="/setdays"
+              element={
+                <AuthenticatedRoute>
+                  <SetDayComponent />
+                </AuthenticatedRoute>
+              }
+              />
             <Route
               path="/week"
               element={
@@ -62,7 +71,6 @@ export default function WeekPlanner() {
                 </AuthenticatedRoute>
               }
             />
-
             <Route
               path="/editprofile/:username"
               element={

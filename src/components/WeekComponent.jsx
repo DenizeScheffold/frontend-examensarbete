@@ -6,7 +6,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import {Button } from "@mui/material";
-import DatePicker from "./DatePicker";
+
 
 
 function Week() {
@@ -53,9 +53,6 @@ function Week() {
     return (
 
       <div className="App">
-
-<div><DatePicker  displayWeekNumber />
-</div>
 
 <form onSubmit={handleSubmit}>
     <Grid
