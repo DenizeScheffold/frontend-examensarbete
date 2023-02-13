@@ -21,8 +21,9 @@ function Week() {
     console.log(values.data);
   };
 
-  const handleSubmit = (dayId) => {
-      axios.patch(`http://localhost:8080/api/editDay/${dayId}`, 
+  const handleSubmit = () => {
+      axios.patch(`http://localhost:8080/api/editDay/204`,
+      // ${dayId}`, 
       { dayId: values.dayId, possible: values.possible
     },{})
     console.log(values.data);
