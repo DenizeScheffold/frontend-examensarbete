@@ -1,4 +1,5 @@
-//TODO: add button to make changes. button should go to editday/dayId(/userid) controller...
+//Ask user to select a week. 
+//Make call to database with userid + week + hsa value in possible
 
 
 import * as React from "react";
@@ -12,7 +13,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 //import { useParams } from "react-router-dom";
 
-function SetDay() {
+function ViewWeek() {
   const [dayInfo, setDayInfo] = React.useState([]
     /*{
     userId: "",
@@ -33,7 +34,7 @@ function SetDay() {
 
   const loadSetDay = async () => {
     const result = await axios.get(
-      `http://localhost:8080/api/getDaysNotSet/1`,
+      `http://localhost:8080/api/user/1/plan`,
       //${userId}`,
       {},
       {}
@@ -78,4 +79,4 @@ function SetDay() {
   );
 }
 
-export default SetDay;
+export default ViewWeek;

@@ -42,8 +42,8 @@ function HeaderComponent() {
             <ul className="navbar-nav">
               <li className="nav-item">
                 {isAuthenticated && (
-                  <Link className="nav-link" to="/week">
-                    View set plan
+                  <Link className="nav-link" to="/viewweek">
+                    View plans
                   </Link>
                 )}
               </li>

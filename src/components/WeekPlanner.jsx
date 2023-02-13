@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LogoutComponent from "./LogoutComponent";
 import HeaderComponent from "./HeaderComponent";
 import WelcomeComponent from "./WelcomeComponent";
-import WeekComponent from "./WeekComponent";
+import ViewWeek from "../ViewWeek";
 import LoginComponent from "./LoginComponent";
 import Signup from "../Signup";
 import Profile from "../Profile";
@@ -56,10 +56,10 @@ export default function WeekPlanner() {
               }
               />
             <Route
-              path="/week"
+              path="/viewweek"
               element={
                 <AuthenticatedRoute>
-                  <WeekComponent />
+                  <ViewWeek />
                 </AuthenticatedRoute>
               }
             />
