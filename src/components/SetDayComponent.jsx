@@ -2,7 +2,7 @@
 
 
 import * as React from "react";
-import axios from "./api/ApiClient";
+import axios from "../api/ApiClient";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,18 +10,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import WeekComponent from "./WeekComponent"
 //import { useParams } from "react-router-dom";
 
 function SetDay() {
   const [dayInfo, setDayInfo] = React.useState([]
-    /*{
-    userId: "",
-    dayId: "",
-    weekNumber: "",
-    dayDate: "",
-    activity: "",
-    possible: "",
-  }*/
   );
   
 
@@ -53,7 +46,7 @@ function SetDay() {
               <TableCell align="right">day id</TableCell>
               <TableCell align="right">week number</TableCell>
               <TableCell align="right">date</TableCell>
-              <TableCell align="right">activity</TableCell>
+              <TableCell align="right">activity 1=Lämna, 2=Hämta</TableCell>
               <TableCell align="right">possible</TableCell>
             </TableRow>
           </TableHead>
@@ -74,6 +67,7 @@ function SetDay() {
           </TableBody>
         </Table>
       </TableContainer>
+      <WeekComponent/>
     </div>
   );
 }

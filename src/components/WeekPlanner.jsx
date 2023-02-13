@@ -8,7 +8,7 @@ import LoginComponent from "./LoginComponent";
 import Signup from "../Signup";
 import Profile from "../Profile";
 import EditProfile from "../EditProfile";
-import SetDayComponent from "../SetDayComponent";
+import SetDayComponent from "./SetDayComponent";
 import AuthProvider, { useAuth } from "../context/AuthContext";
 
 import "./WeekPlanner.css";
