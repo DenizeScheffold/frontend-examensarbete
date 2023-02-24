@@ -15,6 +15,7 @@ mysql -uroot -proot
 create database examensarbete;
 
 To run frontend: https://github.com/DenizeScheffold/frontend-examensarbete
+npm install
 npm start
 
 To login:

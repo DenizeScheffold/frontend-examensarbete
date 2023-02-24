@@ -6,13 +6,11 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { Button } from "@mui/material";
-import { useParams } from "react-router-dom";
-
 
 function EditProfile() {
   const [profileInfo, setProfileInfo] = React.useState({
-    firstName: "",
-    lastName: "",
+    email: "",
+    otherParentId: "",
    
   });
 
@@ -20,16 +18,13 @@ function EditProfile() {
     setProfileInfo({ ...profileInfo, [prop]: e.target.value });
   }; //TODO: THEN GO TO PROFILE. NOW USER GETS LOGGED OUT AFTER EDIT
 
-let {username} = useParams();
-console.log(username);
-
   const handleSubmit = () => {
-   
+ 
   axios.patch(
-      `http://localhost:8080/user/edituser/${username}`,
+      `http://localhost:8080/api/editUser`,
       {
-        firstName: profileInfo.firstName,
-        lastName: profileInfo.lastName,
+        email: profileInfo.email,
+        otherParentId: profileInfo.otherParentId,
       },{}
     );
   
@@ -54,22 +49,22 @@ console.log(username);
 
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
-              <InputLabel>Förnamn</InputLabel>
+              <InputLabel>Email</InputLabel>
               <OutlinedInput
-                label="Förnamn"
+                label="email"
                 value={profileInfo.firstName}
-                onChange={handleChange("firstName")}
+                onChange={handleChange("email")}
                 sx={{ borderRadius: "29px" }}
               />
             </FormControl>
           </Grid>
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
-              <InputLabel>Efternamn</InputLabel>
+              <InputLabel>Other parent´s id</InputLabel>
               <OutlinedInput
-                label="Efternamn"
-                value={profileInfo.lastName}
-                onChange={handleChange("lastName")}
+                label="otherParentId"
+                value={profileInfo.otherParentId}
+                onChange={handleChange("otherParentId")}
                 sx={{ borderRadius: "29px" }}
               />
             </FormControl>

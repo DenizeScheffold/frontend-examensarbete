@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useParams } from "react-router-dom";
+
 
 function Profile() {
   const [profileInfo, setProfileInfo] = React.useState({
@@ -19,7 +19,6 @@ function Profile() {
   });
 
 
-  let {username} = useParams();
 
   React.useEffect(() => {
     loadProfile();
@@ -27,16 +26,16 @@ function Profile() {
 
   const loadProfile = async () => {
     const result = await axios.get(
-      `http://localhost:8080/api/getUser/${username}`,
+      `http://localhost:8080/api/getUser`,
       {},
       {}
     );
     setProfileInfo(result.data);
   };
 
-  const deleteUser = async (userId) => {
+  const deleteUser = async () => {
     await axios.delete(
-      `http://localhost:8080/api/deleteUserById/${userId}`,
+      `http://localhost:8080/api/deleteUserById`,
       {},
       {}
     );
