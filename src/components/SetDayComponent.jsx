@@ -31,7 +31,7 @@ function SetDay() {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
- 
+ /*
   const handleSubmit = async () => {
       const result = await axios.get(
         `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
@@ -40,13 +40,13 @@ function SetDay() {
   },{})
     setDayInfo(result.data);
 };
-/* React.useEffect(() => {
+*/
+ React.useEffect(() => {
     loadSetDay();
   });
   const loadSetDay = async () => {
     const result = await axios.get(
-      `http://localhost:8080/api/getDaysNotSet/1`,
-      //${userId}`,
+      `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
       {},
       {}
     );
@@ -54,11 +54,11 @@ function SetDay() {
     console.log(result.data[0].userId,);
     setDayInfo(result.data);
   }; 
-  */
+  
 
   return (
     <div className="Day">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleChange}>
     <Grid
       container
       direction="column"
@@ -87,14 +87,6 @@ function SetDay() {
         </FormControl>
         </Grid>
       </Grid>
-      
-      <Button
-            fullWidth
-            variant="contained"
-            type="submit"
-            >
-           Select week
-            </Button>
     </form>
 
 

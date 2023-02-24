@@ -22,8 +22,7 @@ function Week() {
   };
 
   const handleSubmit = () => {
-      axios.patch(`http://localhost:8080/api/editDay/204`,
-      // ${dayId}`, 
+      axios.patch(`http://localhost:8080/api/editDay/${values.dayId}`, 
       { dayId: values.dayId, possible: values.possible
     },{})
     console.log(values.data);
@@ -55,7 +54,7 @@ function Week() {
           </InputLabel>
           <OutlinedInput
             label="dayId"
-            
+            value={values.dayId}
            onChange={handleChange("dayId")}
             sx={{ borderRadius: "29px" }}
           />

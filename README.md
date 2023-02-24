@@ -16,6 +16,7 @@ create database examensarbete;
 
 To run frontend: https://github.com/DenizeScheffold/frontend-examensarbete
 npm install
+npm install axios
 npm start
 
 To login:
