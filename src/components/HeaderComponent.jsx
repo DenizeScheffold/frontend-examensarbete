@@ -52,7 +52,7 @@ function HeaderComponent() {
             <ul className="navbar-nav">
               <li className="nav-item">
                 {isAuthenticated && (
-                  <Link className="nav-link" to={`/profile/${authContext.username}`}>
+                  <Link className="nav-link" to={`/profile`}>
                     Profile
                   </Link>
                 )}
@@ -62,7 +62,7 @@ function HeaderComponent() {
             <ul className="navbar-nav">
               <li className="nav-item">
                 {isAuthenticated && (
-                  <Link className="nav-link" to={`/editprofile/${authContext.username}`}>
+                  <Link className="nav-link" to={`/editprofile`}>
                     Edit Profile
                   </Link>
                 )}

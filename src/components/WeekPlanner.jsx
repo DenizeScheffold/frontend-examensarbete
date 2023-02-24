@@ -65,7 +65,7 @@ export default function WeekPlanner() {
               }
             />
             <Route
-              path="/profile/:username"
+              path="/profile"
               element={
                 <AuthenticatedRoute>
                   <Profile />
@@ -73,7 +73,7 @@ export default function WeekPlanner() {
               }
             />
             <Route
-              path="/editprofile/:username"
+              path="/editprofile"
               element={
                 <AuthenticatedRoute>
                   <EditProfile />
