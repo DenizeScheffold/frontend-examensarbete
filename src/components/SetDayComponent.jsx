@@ -17,7 +17,6 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import {Button } from "@mui/material";
 import WeekComponent from "./WeekComponent"
-//import { useParams } from "react-router-dom";
 
 function SetDay() {
   const [dayInfo, setDayInfo] = React.useState([]
@@ -32,17 +31,13 @@ function SetDay() {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
-  // let {userId} = useParams();
-
  
   const handleSubmit = async () => {
       const result = await axios.get(
-        `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}/1`,
-        //${userId}`,
+        `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
+        
     { 
   },{})
-  console.log(result);
-    console.log(result.data[0].userId,);
     setDayInfo(result.data);
 };
 /* React.useEffect(() => {
