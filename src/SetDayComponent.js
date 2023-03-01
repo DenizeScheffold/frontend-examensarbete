@@ -14,13 +14,13 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import { FormControlLabel, Radio, RadioGroup, Button } from '@mui/material';
+import { FormControlLabel, Radio, RadioGroup, Button, FormControl } from '@mui/material';
 
 function SetDay() {
   const [message, setMessage] = React.useState("");
-  const [dayInfo, setDayInfo] = React.useState([]
-  );
+  const [dayInfo, setDayInfo] = React.useState([]);
+  const[currentDayId, setCurrentDayId] = React.useState(0);
+  const [editDay, setEditDay] = React.useState({possible: true, dayId: 0})
   const [messageColor, setMessageColor] = React.useState("");
 
   const [values, setValues] = React.useState({
@@ -47,21 +47,29 @@ function SetDay() {
   };
 
   const handleChange = (prop) => (e) => {
+    const { name, value } = e.target;
+    setEditDay((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
    // setValues({ ...values, [prop]: e.target.value });
-    setPossible({ ...possibleValue, [prop]: e.target.value});
-    console.log(possibleValue.possible);
-    localStorage.setItem("possible", possibleValue.possible)
+   // setPossible({ ...possibleValue, [prop]: e.target.value});
+    //console.log(possibleValue.possible);
+    localStorage.setItem("possible", editDay.possible)
+    localStorage.setItem("currentDayId", editDay.dayId)
  
   };
 
   const handleSubmit = async(e) => { 
     e.preventDefault();
-
+    localStorage.setItem("dayId", editDay.dayId)
     try{
-    axios.patch(`http://localhost:8080/api/editDay/3552`,
-    //${values.dayId}`, 
-    { possible: possibleValue.possible
+    axios.patch(`http://localhost:8080/api/editDay/${editDay.dayId}`, 
+    { possible: editDay.possible
   },{})
+
   console.log(possibleValue.possible);
   setMessage("Day updated ", possibleValue.possible);
   setMessageColor("green");
@@ -108,7 +116,7 @@ function SetDay() {
         </Grid>
 
 </FormControl> */}
-<form onSubmit={handleSubmit}>
+<FormControl onSubmit={handleSubmit}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -118,8 +126,7 @@ function SetDay() {
               <TableCell align="right">week number</TableCell>
               <TableCell align="right">date</TableCell>
               <TableCell align="right">activity 1=Lämna, 2=Hämta</TableCell>
-              <TableCell align="right"> Kan
-              </TableCell>
+              <TableCell align="right"> Kan </TableCell>
             </TableRow>
           </TableHead>
 
@@ -133,7 +140,6 @@ function SetDay() {
                 <TableCell align="right">{day.weekNumber}</TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
                 <TableCell align="right">{day.activity}</TableCell>
-           
                 <TableCell align="right">  
               
                  <RadioGroup
@@ -141,13 +147,15 @@ function SetDay() {
                   label="possible"
                   name="radio-buttons-group"
                   value={possibleValue.possible}
-                  onChange={handleChange ("possible")}
+                  onChange={handleChange [("possible"), (day.dayId)]}
                 >
                   
                   <FormControlLabel value="true" control={<Radio />} label="KAN" />
                   <FormControlLabel value="false" control={<Radio />} label="KAN INTE" />
+                 
                 </RadioGroup>
                 <p className={`${messageColor} text-center`}>{message}</p>
+
                 </TableCell>
               </TableRow>
             ))}
@@ -163,7 +171,7 @@ function SetDay() {
             >
             Klar
             </Button>
-        </form>
+        </FormControl>
    
     </div>
   </div>
