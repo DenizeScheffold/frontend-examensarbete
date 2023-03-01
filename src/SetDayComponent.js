@@ -41,7 +41,7 @@ function SetDay() {
       {},
       {}
     );
-   // console.log(result);
+    console.log(result);
     console.log(result.data[0].userId);
     setDayInfo(result.data);
   };
@@ -58,18 +58,19 @@ function SetDay() {
     e.preventDefault();
 
     try{
-    axios.patch(`http://localhost:8080/api/editDay/3561`,
+    axios.patch(`http://localhost:8080/api/editDay/3552`,
     //${values.dayId}`, 
     { possible: possibleValue.possible
   },{})
+  console.log(possibleValue.possible);
+  setMessage("Day updated ", possibleValue.possible);
+  setMessageColor("green");
 
 } catch(e){
   console.log(e, ".....not working....")
   setMessage(e, "....not working....")
 }
-  console.log(possibleValue.possible);
-  setMessage("Day updated ", possibleValue.possible);
-  setMessageColor("green");
+
 
   };
 
@@ -107,7 +108,7 @@ function SetDay() {
         </Grid>
 
 </FormControl> */}
-<FormControl onSubmit={handleSubmit}>
+<form onSubmit={handleSubmit}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -138,7 +139,6 @@ function SetDay() {
                  <RadioGroup
                   row
                   label="possible"
-
                   name="radio-buttons-group"
                   value={possibleValue.possible}
                   onChange={handleChange ("possible")}
@@ -163,7 +163,7 @@ function SetDay() {
             >
             Klar
             </Button>
-        </FormControl>
+        </form>
    
     </div>
   </div>
