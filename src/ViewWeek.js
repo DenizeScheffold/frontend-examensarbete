@@ -29,19 +29,30 @@ function ViewWeek() {
   // let {userId} = useParams();
 
   React.useEffect(() => {
-    loadSetDay();
+ //   calculateDays();
+    loadProcessedDays();
   });
-
-  const loadSetDay = async () => {
+/* 
+  const calculateDays = async () => {
     const result = await axios.get(
       `http://localhost:8080/api/getPlanForProcessUser`,
-      //${userId}`,
       {},
       {}
     );
     console.log(result);
     setDayInfo(result.data);
   };
+ */
+  const loadProcessedDays = async () => {
+    const result = await axios.get(
+      `http://localhost:8080/api/getCompletePlan`,
+      {},
+      {}
+    );
+    console.log(result);
+    setDayInfo(result.data);
+  };
+  
 
   return (
     <div className="Day">
@@ -54,23 +65,23 @@ function ViewWeek() {
               <TableCell align="right">week number</TableCell>
               <TableCell align="right">date</TableCell>
               <TableCell align="right">activity</TableCell>
-              <TableCell align="right">possible
-              </TableCell>
+              <TableCell align="right">possible </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-
+          {dayInfo.map((day) => (
             <TableRow>
               <TableCell component="th" scope="row">
-                {dayInfo.userId}
+                {day.userId}
               </TableCell>
-              <TableCell align="right">{dayInfo.dayId}</TableCell>
-              <TableCell align="right">{dayInfo.weekNumber}</TableCell>
-              <TableCell align="right">{dayInfo.dayDate}</TableCell>
-              <TableCell align="right">{dayInfo.activity}</TableCell>
-              <TableCell align="right">{dayInfo.possible}</TableCell>
+              <TableCell align="right">{day.dayId}</TableCell>
+              <TableCell align="right">{day.weekNumber}</TableCell>
+              <TableCell align="right">{day.dayDate}</TableCell>
+              <TableCell align="right">{day.activity}</TableCell>
+              <TableCell align="right">{day.possible}</TableCell>
             </TableRow>
+             ))}
           </TableBody>
         </Table>
       </TableContainer>
