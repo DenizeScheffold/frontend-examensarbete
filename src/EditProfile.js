@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import axios from "./api/ApiClient";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -8,26 +9,29 @@ import FormControl from "@mui/material/FormControl";
 import { Button } from "@mui/material";
 
 function EditProfile() {
+  const [message, setMessage] = useState("");
+  const [messageColor, setMessageColor] = useState("");
   const [profileInfo, setProfileInfo] = React.useState({
     email: "",
     otherParentId: "",
-   
   });
 
   const handleChange = (prop) => (e) => {
     setProfileInfo({ ...profileInfo, [prop]: e.target.value });
   }; //TODO: THEN GO TO PROFILE. NOW USER GETS LOGGED OUT AFTER EDIT
 
-  const handleSubmit = () => {
- 
-  axios.patch(
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    axios.patch(
       `http://localhost:8080/api/editUser`,
       {
         email: profileInfo.email,
         otherParentId: profileInfo.otherParentId,
-      },{}
+      }, {}
     );
-  
+    setMessage("User updated");
+    setMessageColor("text-green-500");
   };
 
   return (
@@ -68,8 +72,9 @@ function EditProfile() {
                 sx={{ borderRadius: "29px" }}
               />
             </FormControl>
+            <p className={`${messageColor} text-center`}>{message}</p>
           </Grid>
-    
+
         </Grid>
 
         <Button fullWidth variant="contained" type="submit">

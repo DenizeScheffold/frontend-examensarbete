@@ -15,33 +15,33 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import {Button } from "@mui/material";
-import WeekComponent from "./WeekComponent"
+import EditDayComponent from "./EditDayComponent"
+import { FormControlLabel, Radio } from '@mui/material';
 
 function SetDay() {
   const [dayInfo, setDayInfo] = React.useState([]
   );
-  
+
   const [values, setValues] = React.useState({
     weekNumber: ""
   });
 
-  
+
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
- /*
-  const handleSubmit = async () => {
-      const result = await axios.get(
-        `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
-        
-    { 
-  },{})
-    setDayInfo(result.data);
-};
-*/
- React.useEffect(() => {
+  /*
+   const handleSubmit = async () => {
+       const result = await axios.get(
+         `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
+         
+     { 
+   },{})
+     setDayInfo(result.data);
+ };
+ */
+  React.useEffect(() => {
     loadSetDay();
   });
   const loadSetDay = async () => {
@@ -53,41 +53,41 @@ function SetDay() {
     console.log(result);
     console.log(result.data[0].userId,);
     setDayInfo(result.data);
-  }; 
-  
+  };
+
 
   return (
     <div className="Day">
       <form onSubmit={handleChange}>
-    <Grid
-      container
-      direction="column"
-      justifyContent="space-between"
-      alignItems="center"
-      maxWidth="90%"
-      marginTop="auto"
-      marginLeft="4%"
-      spacing={2}
-    >
-      <Grid item>
-        <Typography variant="h2">Set Plan</Typography>
-      </Grid>
+        <Grid
+          container
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          maxWidth="90%"
+          marginTop="auto"
+          marginLeft="4%"
+          spacing={2}
+        >
+          <Grid item>
+            <Typography variant="h2">Choose week</Typography>
+          </Grid>
 
-      <Grid item sx={{ width: 0.5 }}>
-        <FormControl fullWidth>
-          <InputLabel >
-            Week Number
-          </InputLabel>
-          <OutlinedInput
-            label="weekNumber"
-            value={values.weekNumber}
-           onChange={handleChange("weekNumber")}
-            sx={{ borderRadius: "29px" }}
-          />
-        </FormControl>
+          <Grid item sx={{ width: 0.5 }}>
+            <FormControl fullWidth>
+              <InputLabel >
+                Week Number
+              </InputLabel>
+              <OutlinedInput
+                label="weekNumber"
+                value={values.weekNumber}
+                onChange={handleChange("weekNumber")}
+                sx={{ borderRadius: "29px" }}
+              />
+            </FormControl>
+          </Grid>
         </Grid>
-      </Grid>
-    </form>
+      </form>
 
 
       <TableContainer component={Paper}>
@@ -99,12 +99,16 @@ function SetDay() {
               <TableCell align="right">week number</TableCell>
               <TableCell align="right">date</TableCell>
               <TableCell align="right">activity 1=Lämna, 2=Hämta</TableCell>
-              <TableCell align="right">possible</TableCell>
+              <TableCell align="right">possible
+                <FormControlLabel value="true" control={<Radio />} label="True" />
+                <FormControlLabel value="false" control={<Radio />} label="False" />
+
+              </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-          {dayInfo.map((day) => (          
+            {dayInfo.map((day) => (
               <TableRow>
                 <TableCell component="th" scope="row">
                   {day.userId}
@@ -115,11 +119,11 @@ function SetDay() {
                 <TableCell align="right">{day.activity}</TableCell>
                 <TableCell align="right">{day.possible}</TableCell>
               </TableRow>
-              ))}
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <WeekComponent/>
+      <EditDayComponent />
     </div>
   );
 }

@@ -14,8 +14,8 @@ function Profile() {
     username: "",
     userId: "",
     otherParentId: "",
-    email:"",
-    role:"",
+    email: "",
+    role: "",
   });
 
 

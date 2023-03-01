@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 function LoginComponent() {
@@ -24,7 +24,7 @@ function LoginComponent() {
     }
 
     async function handleSubmit() {
-        if(await authContext.login(username, password)){
+        if (await authContext.login(username, password)) {
             navigate(`/welcome/${username}`)
         } else {
             setShowErrorMessage(true)
@@ -34,16 +34,16 @@ function LoginComponent() {
     return (
         <div className="LoginComponent">
             <h1>Time to Login!</h1>
-            {showErrorMessage && <div className="errorMessage">Authentication Failed. 
-                                                            Please check your credentials.</div>}
+            {showErrorMessage && <div className="errorMessage">Authentication Failed.
+                Please check your credentials.</div>}
             <div className="LoginForm">
                 <div>
                     <label>User Name:</label>
-                    <input type="text" name="username" value={username} onChange={handleUsernameChange}/>
+                    <input type="text" name="username" value={username} onChange={handleUsernameChange} />
                 </div>
                 <div>
                     <label>Password:</label>
-                    <input type="password" name="password" value={password} onChange={handlePasswordChange}/>
+                    <input type="password" name="password" value={password} onChange={handlePasswordChange} />
                 </div>
                 <div>
                     <button type="button" name="login" onClick={handleSubmit}>login</button>

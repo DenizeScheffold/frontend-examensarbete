@@ -28,7 +28,7 @@ export default function WeekPlanner() {
         <BrowserRouter>
           <HeaderComponent />
           <Routes>
-          <Route exact path="/" element={<LoginComponent />} />
+            <Route exact path="/" element={<LoginComponent />} />
             <Route path="/signup" exact element={<Signup />} />
             <Route path="/login" element={<LoginComponent />} />
             <Route
@@ -48,14 +48,14 @@ export default function WeekPlanner() {
                 </AuthenticatedRoute>
               }
             />
-                <Route
+            <Route
               path="/setdays"
               element={
                 <AuthenticatedRoute>
                   <SetDayComponent />
                 </AuthenticatedRoute>
               }
-              />
+            />
             <Route
               path="/viewweek"
               element={

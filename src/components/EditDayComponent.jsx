@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useNavigate} from 'react-router-dom'
 import axios from "../api/ApiClient";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -20,12 +21,15 @@ function Week() {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
+  
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
       axios.patch(`http://localhost:8080/api/editDay/${values.dayId}`, 
       { dayId: values.dayId, possible: values.possible
     },{})
     console.log(values.data);
+    navigate(`/setdays`)
   };
 
     return (
@@ -80,6 +84,7 @@ function Week() {
             fullWidth
             variant="contained"
             type="submit"
+
             >
             Klar
             </Button>

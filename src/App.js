@@ -1,10 +1,10 @@
 import React from "react";
-import WeekPlanner from './components/WeekPlanner';
+import RouterKindi from './components/RouterKindi';
 
 function App() {
   return (
     <main className="App">
-      <WeekPlanner/>
+      <RouterKindi />
     </main>
   );
 }

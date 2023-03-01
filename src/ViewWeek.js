@@ -24,7 +24,7 @@ function ViewWeek() {
     possible: "",
   }*/
   );
-  
+
 
   // let {userId} = useParams();
 
@@ -34,13 +34,12 @@ function ViewWeek() {
 
   const loadSetDay = async () => {
     const result = await axios.get(
-      `http://localhost:8080/api/user/1/plan`,
+      `http://localhost:8080/api/getPlanForProcessUser`,
       //${userId}`,
       {},
       {}
     );
     console.log(result);
-    console.log(result.data[0].userId,);
     setDayInfo(result.data);
   };
 
@@ -55,23 +54,23 @@ function ViewWeek() {
               <TableCell align="right">week number</TableCell>
               <TableCell align="right">date</TableCell>
               <TableCell align="right">activity</TableCell>
-              <TableCell align="right">possible</TableCell>
+              <TableCell align="right">possible
+              </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-          {dayInfo.map((day) => (          
-              <TableRow>
-                <TableCell component="th" scope="row">
-                  {day.userId}
-                </TableCell>
-                <TableCell align="right">{day.dayId}</TableCell>
-                <TableCell align="right">{day.weekNumber}</TableCell>
-                <TableCell align="right">{day.dayDate}</TableCell>
-                <TableCell align="right">{day.activity}</TableCell>
-                <TableCell align="right">{day.possible}</TableCell>
-              </TableRow>
-              ))}
+
+            <TableRow>
+              <TableCell component="th" scope="row">
+                {dayInfo.userId}
+              </TableCell>
+              <TableCell align="right">{dayInfo.dayId}</TableCell>
+              <TableCell align="right">{dayInfo.weekNumber}</TableCell>
+              <TableCell align="right">{dayInfo.dayDate}</TableCell>
+              <TableCell align="right">{dayInfo.activity}</TableCell>
+              <TableCell align="right">{dayInfo.possible}</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
