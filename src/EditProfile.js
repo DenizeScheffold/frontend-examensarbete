@@ -18,7 +18,7 @@ function EditProfile() {
 
   const handleChange = (prop) => (e) => {
     setProfileInfo({ ...profileInfo, [prop]: e.target.value });
-  }; //TODO: THEN GO TO PROFILE. NOW USER GETS LOGGED OUT AFTER EDIT
+  }; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ function EditProfile() {
       }, {}
     );
     setMessage("User updated");
-    setMessageColor("text-green-500");
+    setMessageColor("green");
   };
 
   return (

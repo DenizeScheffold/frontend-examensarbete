@@ -6,13 +6,9 @@ import { useAuth } from '../context/AuthContext'
 function LoginComponent() {
 
     const [username, setUsername] = useState('')
-
     const [password, setPassword] = useState('')
-
     const [showErrorMessage, setShowErrorMessage] = useState(false)
-
     const navigate = useNavigate()
-
     const authContext = useAuth()
 
     function handleUsernameChange(event) {

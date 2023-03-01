@@ -2,7 +2,7 @@
 
 
 import * as React from "react";
-import axios from "../api/ApiClient";
+import axios from "./api/ApiClient";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -15,50 +15,70 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import EditDayComponent from "./EditDayComponent"
-import { FormControlLabel, Radio } from '@mui/material';
+import { FormControlLabel, Radio, RadioGroup, Button } from '@mui/material';
 
 function SetDay() {
+  const [message, setMessage] = React.useState("");
   const [dayInfo, setDayInfo] = React.useState([]
   );
+  const [messageColor, setMessageColor] = React.useState("");
 
   const [values, setValues] = React.useState({
     weekNumber: ""
   });
 
+  const [possibleValue, setPossible] = React.useState(true);
 
-  const handleChange = (prop) => (e) => {
-    setValues({ ...values, [prop]: e.target.value });
-    console.log(values.data);
-  };
-  /*
-   const handleSubmit = async () => {
-       const result = await axios.get(
-         `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
-         
-     { 
-   },{})
-     setDayInfo(result.data);
- };
- */
   React.useEffect(() => {
     loadSetDay();
   });
+  
+
   const loadSetDay = async () => {
     const result = await axios.get(
-      `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
+      `http://localhost:8080/api/getDaysNotSet/2`,
+      //${values.weekNumber}`,
       {},
       {}
     );
-    console.log(result);
-    console.log(result.data[0].userId,);
+   // console.log(result);
+    console.log(result.data[0].userId);
     setDayInfo(result.data);
   };
 
+  const handleChange = (prop) => (e) => {
+   // setValues({ ...values, [prop]: e.target.value });
+    setPossible({ ...possibleValue, [prop]: e.target.value});
+    console.log(possibleValue.possible);
+    localStorage.setItem("possible", possibleValue.possible)
+ 
+  };
+
+  const handleSubmit = async(e) => { 
+    e.preventDefault();
+
+    try{
+    axios.patch(`http://localhost:8080/api/editDay/3561`,
+    //${values.dayId}`, 
+    { possible: possibleValue.possible
+  },{})
+
+} catch(e){
+  console.log(e, ".....not working....")
+  setMessage(e, "....not working....")
+}
+  console.log(possibleValue.possible);
+  setMessage("Day updated ", possibleValue.possible);
+  setMessageColor("green");
+
+  };
+
+
 
   return (
+    <div>
     <div className="Day">
-      <form onSubmit={handleChange}>
+    {/*   <FormControl onSubmit={handleChange}>
         <Grid
           container
           direction="column"
@@ -74,7 +94,6 @@ function SetDay() {
           </Grid>
 
           <Grid item sx={{ width: 0.5 }}>
-            <FormControl fullWidth>
               <InputLabel >
                 Week Number
               </InputLabel>
@@ -84,12 +103,11 @@ function SetDay() {
                 onChange={handleChange("weekNumber")}
                 sx={{ borderRadius: "29px" }}
               />
-            </FormControl>
           </Grid>
         </Grid>
-      </form>
 
-
+</FormControl> */}
+<FormControl onSubmit={handleSubmit}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -99,10 +117,7 @@ function SetDay() {
               <TableCell align="right">week number</TableCell>
               <TableCell align="right">date</TableCell>
               <TableCell align="right">activity 1=Lämna, 2=Hämta</TableCell>
-              <TableCell align="right">possible
-                <FormControlLabel value="true" control={<Radio />} label="True" />
-                <FormControlLabel value="false" control={<Radio />} label="False" />
-
+              <TableCell align="right"> Kan
               </TableCell>
             </TableRow>
           </TableHead>
@@ -117,15 +132,43 @@ function SetDay() {
                 <TableCell align="right">{day.weekNumber}</TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
                 <TableCell align="right">{day.activity}</TableCell>
-                <TableCell align="right">{day.possible}</TableCell>
+           
+                <TableCell align="right">  
+              
+                 <RadioGroup
+                  row
+                  label="possible"
+
+                  name="radio-buttons-group"
+                  value={possibleValue.possible}
+                  onChange={handleChange ("possible")}
+                >
+                  
+                  <FormControlLabel value="true" control={<Radio />} label="KAN" />
+                  <FormControlLabel value="false" control={<Radio />} label="KAN INTE" />
+                </RadioGroup>
+                <p className={`${messageColor} text-center`}>{message}</p>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
-      <EditDayComponent />
+      </TableContainer>      
+      
+      <Button
+            fullWidth
+            variant="contained"
+            type="submit"
+
+            >
+            Klar
+            </Button>
+        </FormControl>
+   
     </div>
-  );
+  </div>
+  );  
+  
 }
 
 export default SetDay;
