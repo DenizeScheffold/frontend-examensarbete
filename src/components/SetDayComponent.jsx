@@ -31,16 +31,7 @@ function SetDay() {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
-  /*
-   const handleSubmit = async () => {
-       const result = await axios.get(
-         `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
-         
-     { 
-   },{})
-     setDayInfo(result.data);
- };
- */
+
   React.useEffect(() => {
     loadSetDay();
   });
@@ -99,11 +90,6 @@ function SetDay() {
               <TableCell align="right">week number</TableCell>
               <TableCell align="right">date</TableCell>
               <TableCell align="right">activity 1=Lämna, 2=Hämta</TableCell>
-              <TableCell align="right">possible
-                <FormControlLabel value="true" control={<Radio />} label="True" />
-                <FormControlLabel value="false" control={<Radio />} label="False" />
-
-              </TableCell>
             </TableRow>
           </TableHead>
 
@@ -117,7 +103,6 @@ function SetDay() {
                 <TableCell align="right">{day.weekNumber}</TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
                 <TableCell align="right">{day.activity}</TableCell>
-                <TableCell align="right">{day.possible}</TableCell>
               </TableRow>
             ))}
           </TableBody>

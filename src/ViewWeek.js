@@ -15,18 +15,7 @@ import Paper from "@mui/material/Paper";
 
 function ViewWeek() {
   const [dayInfo, setDayInfo] = React.useState([]
-    /*{
-    userId: "",
-    dayId: "",
-    weekNumber: "",
-    dayDate: "",
-    activity: "",
-    possible: "",
-  }*/
   );
-
-
-  // let {userId} = useParams();
 
   React.useEffect(() => {
  //   calculateDays();
@@ -71,17 +60,17 @@ function ViewWeek() {
 
           <TableBody>
           {dayInfo.map((day) => (
-            <TableRow>
-              <TableCell component="th" scope="row">
-                {day.userId}
-              </TableCell>
-              <TableCell align="right">{day.dayId}</TableCell>
-              <TableCell align="right">{day.weekNumber}</TableCell>
-              <TableCell align="right">{day.dayDate}</TableCell>
-              <TableCell align="right">{day.activity}</TableCell>
-              <TableCell align="right">{day.possible}</TableCell>
-            </TableRow>
-             ))}
+              <TableRow>
+                <TableCell component="th" scope="row">
+                  {day.userId}
+                </TableCell>
+                <TableCell align="right">{day.dayId}</TableCell>
+                <TableCell align="right">{day.weekNumber}</TableCell>
+                <TableCell align="right">{day.dayDate}</TableCell>
+                <TableCell align="right">{day.activity}</TableCell>
+                <TableCell align="right">{day.possible.toString()}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
