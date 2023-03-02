@@ -4,6 +4,7 @@
 
 import * as React from "react";
 import axios from "./api/ApiClient";
+import ColorConditionalComponent from "./components/ColorConditionalComponent";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -16,7 +17,6 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-//import { useParams } from "react-router-dom";
 
 function ViewWeek() {
   const [dayInfo, setDayInfo] = React.useState([]
@@ -25,8 +25,10 @@ function ViewWeek() {
     weekNumber: ""
   });
 
+  
+
   React.useEffect(() => {
- //   calculateDays();
+    //   calculateDays();
     loadProcessedDays();
   });
 
@@ -34,17 +36,17 @@ function ViewWeek() {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
-/* 
-  const calculateDays = async () => {
-    const result = await axios.get(
-      `http://localhost:8080/api/getPlanForProcessUser`,
-      {},
-      {}
-    );
-    console.log(result);
-    setDayInfo(result.data);
-  };
- */
+  /* 
+    const calculateDays = async () => {
+      const result = await axios.get(
+        `http://localhost:8080/api/getPlanForProcessUser`,
+        {},
+        {}
+      );
+      console.log(result);
+      setDayInfo(result.data);
+    };
+   */
   const loadProcessedDays = async () => {
     const result = await axios.get(
       `http://localhost:8080/api/getCompletePlan`,
@@ -54,11 +56,11 @@ function ViewWeek() {
     console.log(result);
     setDayInfo(result.data);
   };
-  
+
 
   return (
     <div className="Day">
-            <form onSubmit={handleChange}>
+      <form onSubmit={handleChange}>
         <Grid
           container
           direction="column"
@@ -70,7 +72,7 @@ function ViewWeek() {
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h2">Choose week</Typography>
+            <Typography variant="h3">Choose week</Typography>
           </Grid>
 
           <Grid item sx={{ width: 0.5 }}>
@@ -94,19 +96,19 @@ function ViewWeek() {
           <TableHead>
             <TableRow>
               <TableCell align="right">date</TableCell>
-              <TableCell align="right">activity</TableCell>
+              <TableCell align="right">Hämta</TableCell>
               <TableCell align="right">possible </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-          {dayInfo.map((day) => (
+            {dayInfo.map((day) => (
               <TableRow>
-                <TableCell component="th" scope="row">
-                </TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
                 <TableCell align="right">{day.activity}</TableCell>
-                <TableCell align="right">{day.possible.toString()}</TableCell>
+                <ColorConditionalComponent possible={day.possible.toString()}>
+                  <TableCell align="right">{day.possible.toString()}</TableCell>
+                  </ColorConditionalComponent>
               </TableRow>
             ))}
           </TableBody>

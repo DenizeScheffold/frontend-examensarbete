@@ -51,7 +51,7 @@ function Week() {
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h2">Set Plan</Typography>
+            <Typography variant="h3">Set Plan</Typography>
           </Grid>
 
           <Grid item sx={{ width: 0.5 }}>

@@ -16,7 +16,6 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import EditDayComponent from "./EditDayComponent"
-import { FormControlLabel, Radio } from '@mui/material';
 
 function SetDay() {
   const [dayInfo, setDayInfo] = React.useState([]
@@ -61,7 +60,7 @@ function SetDay() {
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h2">Choose week</Typography>
+            <Typography variant="h3">Choose week</Typography>
           </Grid>
 
           <Grid item sx={{ width: 0.5 }}>
