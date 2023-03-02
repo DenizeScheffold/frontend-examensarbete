@@ -4,7 +4,6 @@
 
 import * as React from "react";
 import axios from "./api/ApiClient";
-import ColorConditionalComponent from "./components/ColorConditionalComponent";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -25,17 +24,27 @@ function ViewWeek() {
     weekNumber: ""
   });
 
-  
+  const IsActivity1 = (props) => {
+    let {activity} = props;
 
-  React.useEffect(() => {
-    //   calculateDays();
-    loadProcessedDays();
-  });
+    if(activity === 1){
+      return( true)
+    } else {
+      return (false)
+    }
+  }
+
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
+
+  
+  React.useEffect(() => {
+    //   calculateDays();
+    loadProcessedDays();
+  });
   /* 
     const calculateDays = async () => {
       const result = await axios.get(
@@ -49,7 +58,8 @@ function ViewWeek() {
    */
   const loadProcessedDays = async () => {
     const result = await axios.get(
-      `http://localhost:8080/api/getCompletePlan`,
+      `http://localhost:8080/api/getCompletePlanOnlyTrueBothParents/${values.weekNumber}`,
+      // `http://localhost:8080/api/getCompletePlan`,
       {},
       {}
     );
@@ -95,20 +105,23 @@ function ViewWeek() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">date</TableCell>
+                            <TableCell align="right">day id</TableCell>
+              <TableCell align="right">Datum</TableCell>
+              <TableCell align="right">Lämna</TableCell>
               <TableCell align="right">Hämta</TableCell>
-              <TableCell align="right">possible </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
             {dayInfo.map((day) => (
               <TableRow>
+                     <TableCell align="right">{day.dayId}</TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
-                <TableCell align="right">{day.activity}</TableCell>
-                <ColorConditionalComponent possible={day.possible.toString()}>
-                  <TableCell align="right">{day.possible.toString()}</TableCell>
-                  </ColorConditionalComponent>
+
+ 
+                <TableCell align="right"> {IsActivity1} {day.activity===true} {day.userId}</TableCell>
+         
+                <TableCell align="right">{IsActivity1} {day.activity===true} {day.userId}</TableCell>
               </TableRow>
             ))}
           </TableBody>
