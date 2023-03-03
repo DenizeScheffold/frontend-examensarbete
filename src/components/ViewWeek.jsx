@@ -3,7 +3,7 @@
 
 
 import * as React from "react";
-import axios from "./api/ApiClient";
+import axios from "../api/ApiClient";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -23,17 +23,6 @@ function ViewWeek() {
   const [values, setValues] = React.useState({
     weekNumber: ""
   });
-
-  const IsActivity1 = (props) => {
-    let {activity} = props;
-
-    if(activity === 1){
-      return( true)
-    } else {
-      return (false)
-    }
-  }
-
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
@@ -105,7 +94,7 @@ function ViewWeek() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-                            <TableCell align="right">day id</TableCell>
+   
               <TableCell align="right">Datum</TableCell>
               <TableCell align="right">Lämna</TableCell>
               <TableCell align="right">Hämta</TableCell>
@@ -115,13 +104,12 @@ function ViewWeek() {
           <TableBody>
             {dayInfo.map((day) => (
               <TableRow>
-                     <TableCell align="right">{day.dayId}</TableCell>
-                <TableCell align="right">{day.dayDate}</TableCell>
+          
+                <TableCell align="right">{day.dayDate.toString()}</TableCell>
 
- 
-                <TableCell align="right"> {IsActivity1} {day.activity===true} {day.userId}</TableCell>
+                <TableCell align="right">{day.activity === 1 && <p>{day.userId}</p>} </TableCell>
          
-                <TableCell align="right">{IsActivity1} {day.activity===true} {day.userId}</TableCell>
+                <TableCell align="right">{day.activity === 2 && <p> {day.userId} </p>}</TableCell> 
               </TableRow>
             ))}
           </TableBody>
