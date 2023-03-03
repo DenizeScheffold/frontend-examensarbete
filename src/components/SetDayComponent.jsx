@@ -34,15 +34,19 @@ function SetDay() {
   React.useEffect(() => {
     loadSetDay();
   });
-  const loadSetDay = async () => {
+  const loadSetDay = async (e) => {
     const result = await axios.get(
       `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
       {},
       {}
-    );
+    ).then(response => {
+      if (response.status === 200) {
+        setDayInfo(result.data);
+      } else if (response.status === 204) {
+        console.log("ingen content, hanterades inom loadSetDay..")
+      }
+    })
     console.log(result);
-    console.log(result.data[0].userId,);
-    setDayInfo(result.data);
   };
 
 
@@ -101,7 +105,7 @@ function SetDay() {
                 <TableCell align="right">{day.dayId}</TableCell>
                 <TableCell align="right">{day.weekNumber}</TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
-                <TableCell align="right">{day.activity === 1 ? <p>Lämna</p>: <p>Hämta</p> }</TableCell>
+                <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}</TableCell>
               </TableRow>
             ))}
           </TableBody>
