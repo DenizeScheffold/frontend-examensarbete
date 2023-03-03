@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
+import CalculatePlans from "./CalculatePlans";
 
 function ViewWeek() {
   const [dayInfo, setDayInfo] = React.useState([]
@@ -23,42 +24,56 @@ function ViewWeek() {
   const [values, setValues] = React.useState({
     weekNumber: ""
   });
+  const [showErrorMessage, setShowErrorMessage] = React.useState(false)
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
 
+
   
   React.useEffect(() => {
-    //   calculateDays();
+   // calculateDays();
     loadProcessedDays();
   });
   /* 
-    const calculateDays = async () => {
+    const calculateDays = async (e) => {
+     
       const result = await axios.get(
         `http://localhost:8080/api/getPlanForProcessUser`,
         {},
         {}
-      );
+      )
+      .catch((err) => console.log(err));
       console.log(result);
       setDayInfo(result.data);
-    };
-   */
+      
+
+    }; */
+   
   const loadProcessedDays = async () => {
+
+    try{
     const result = await axios.get(
       `http://localhost:8080/api/getCompletePlanOnlyTrueBothParents/${values.weekNumber}`,
       // `http://localhost:8080/api/getCompletePlan`,
       {},
       {}
-    );
+    )
+    .catch((err) => console.log(err));
     console.log(result);
     setDayInfo(result.data);
+    } catch {
+      setShowErrorMessage(true)
+
+    }
   };
 
 
   return (
     <div className="Day">
+       <CalculatePlans />
       <form onSubmit={handleChange}>
         <Grid
           container
@@ -105,7 +120,7 @@ function ViewWeek() {
             {dayInfo.map((day) => (
               <TableRow>
           
-                <TableCell align="right">{day.dayDate.toString()}</TableCell>
+                <TableCell align="right">{day.dayDate}</TableCell>
 
                 <TableCell align="right">{day.activity === 1 && <p>{day.userId}</p>} </TableCell>
          

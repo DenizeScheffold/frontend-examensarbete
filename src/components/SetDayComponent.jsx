@@ -101,7 +101,7 @@ function SetDay() {
                 <TableCell align="right">{day.dayId}</TableCell>
                 <TableCell align="right">{day.weekNumber}</TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
-                <TableCell align="right">{day.activity}</TableCell>
+                <TableCell align="right">{day.activity === 1 ? <p>Lämna</p>: <p>Hämta</p> }</TableCell>
               </TableRow>
             ))}
           </TableBody>
