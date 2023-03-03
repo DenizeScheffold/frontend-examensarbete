@@ -53,21 +53,17 @@ function ViewWeek() {
     }; */
    
   const loadProcessedDays = async () => {
-
-    try{
-    const result = await axios.get(
+    await axios.get(
       `http://localhost:8080/api/getCompletePlanOnlyTrueBothParents/${values.weekNumber}`,
-      // `http://localhost:8080/api/getCompletePlan`,
       {},
       {}
-    )
-    .catch((err) => console.log(err));
-    console.log(result);
-    setDayInfo(result.data);
-    } catch {
-      setShowErrorMessage(true)
-
-    }
+    ).then(response => {
+      if (response.status === 200) {
+        setDayInfo(response.data);
+      } else if (response.status === 204) {
+        console.log("ingen content, hanterades inom loadProcessedDays..")
+      }
+    })
   };
 
 

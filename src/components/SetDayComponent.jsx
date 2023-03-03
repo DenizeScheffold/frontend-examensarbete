@@ -34,19 +34,22 @@ function SetDay() {
   React.useEffect(() => {
     loadSetDay();
   });
-  const loadSetDay = async (e) => {
-    const result = await axios.get(
+
+  const loadSetDay = async (error) => {
+    await axios.get(
       `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
       {},
       {}
     ).then(response => {
       if (response.status === 200) {
-        setDayInfo(result.data);
+        setDayInfo(response.data); 
       } else if (response.status === 204) {
         console.log("ingen content, hanterades inom loadSetDay..")
+      } else{
+        console.log("något som inte funkade....")
       }
     })
-    console.log(result);
+
   };
 
 
