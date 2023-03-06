@@ -3,9 +3,9 @@ import React from "react";
 function LogoutComponent() {
     return (
         <div className="LogoutComponent">
-            <h1>You are logged out!</h1>
+            <h1>Du är utloggad från Kindi.</h1>
             <div>
-                Thank you for using our App. Come back soon!
+                Välkommen tillbaka snart!
             </div>
         </div>
     )

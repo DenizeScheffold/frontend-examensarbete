@@ -1,5 +1,6 @@
 import * as React from "react";
 import axios from "./api/ApiClient";
+import { useNavigate } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,6 +11,7 @@ import Paper from "@mui/material/Paper";
 
 
 function Profile() {
+  const navigate = useNavigate();
   const [profileInfo, setProfileInfo] = React.useState({
     username: "",
     userId: "",
@@ -17,8 +19,6 @@ function Profile() {
     email: "",
     role: "",
   });
-
-
 
   React.useEffect(() => {
     loadProfile();
@@ -76,7 +76,13 @@ function Profile() {
         className="btn btn-danger mx-2"
         onClick={() => deleteUser(profileInfo.userId)}
       >
-        Delete
+        Radera profil
+      </button>
+      <button
+        className="btn btn-success mx-2"
+        onClick={() => navigate("/editprofile")} 
+      >
+        Redigera profil
       </button>
     </div>
   );
