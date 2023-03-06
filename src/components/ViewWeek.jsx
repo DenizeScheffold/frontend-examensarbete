@@ -17,16 +17,17 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import CalculatePlans from "./CalculatePlans";
+import UserName from "./UsernameComponent";
 
 function ViewWeek() {
   const [dayInfo, setDayInfo] = React.useState([]
   );
+
   const [values, setValues] = React.useState({
     weekNumber: ""
   });
 
-  //TODO: use names instead of id
-  const [coParentName, setCoParentName] = React.useState("")
+
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
@@ -53,25 +54,13 @@ function ViewWeek() {
   };
 
 
-  const loadCoParentName = async () => {
-    await axios.get(
-      `http://localhost:8080/localhost:8080/api/getCoParentName`,
-      {},
-      {}
-    ).then(response => {
-      if (response.status === 200) {
-        setCoParentName(response.data);
-      } else if (response.status === 204) {
-        console.log("ingen content, hanterades inom loadProcessedDays..")
-      }
-    })
-  };
+
 
   return (
     <div className="Day">
-      
+
       <CalculatePlans />
-      
+
       <form onSubmit={handleChange}>
         <Grid
           container
@@ -120,9 +109,9 @@ function ViewWeek() {
 
                 <TableCell align="right">{day.dayDate}</TableCell>
 
-                <TableCell align="right">{day.activity === 1 && <p>{day.userId}</p>} </TableCell>
+                <TableCell align="right">{day.activity === 1 && <UserName userId={day.userId}/>} </TableCell>
 
-                <TableCell align="right">{day.activity === 2 && <p> {day.userId} </p>}</TableCell>
+                <TableCell align="right">{day.activity === 2 && <UserName userId={day.userId}/>}</TableCell>
               </TableRow>
             ))}
           </TableBody>
