@@ -48,7 +48,7 @@ function EditProfile() {
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h2">Edit Profile</Typography>
+            <Typography variant="h2">Redigera din profil</Typography>
           </Grid>
 
           <Grid item sx={{ width: 0.5 }}>
@@ -64,7 +64,7 @@ function EditProfile() {
           </Grid>
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
-              <InputLabel>Other parent´s id</InputLabel>
+              <InputLabel>Din medförälders id</InputLabel>
               <OutlinedInput
                 label="otherParentId"
                 value={profileInfo.otherParentId}
