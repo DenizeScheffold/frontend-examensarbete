@@ -32,26 +32,12 @@ function ViewWeek() {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
-  
+
   React.useEffect(() => {
-   // calculateDays();
     loadProcessedDays();
   });
-  /* 
-    const calculateDays = async (e) => {
-     
-      const result = await axios.get(
-        `http://localhost:8080/api/getPlanForProcessUser`,
-        {},
-        {}
-      )
-      .catch((err) => console.log(err));
-      console.log(result);
-      setDayInfo(result.data);
-      
 
-    }; */
-   
+
   const loadProcessedDays = async () => {
     await axios.get(
       `http://localhost:8080/api/getCompletePlanOnlyTrueBothParents/${values.weekNumber}`,
@@ -66,7 +52,7 @@ function ViewWeek() {
     })
   };
 
-  
+
   const loadCoParentName = async () => {
     await axios.get(
       `http://localhost:8080/localhost:8080/api/getCoParentName`,
@@ -83,7 +69,9 @@ function ViewWeek() {
 
   return (
     <div className="Day">
-       <CalculatePlans />
+      
+      <CalculatePlans />
+      
       <form onSubmit={handleChange}>
         <Grid
           container
@@ -96,13 +84,13 @@ function ViewWeek() {
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h3">Choose week</Typography>
+            <Typography variant="h3">Välj vecka</Typography>
           </Grid>
 
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
               <InputLabel >
-                Week Number
+                Veckonummer
               </InputLabel>
               <OutlinedInput
                 label="weekNumber"
@@ -119,7 +107,7 @@ function ViewWeek() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-   
+
               <TableCell align="right">Datum</TableCell>
               <TableCell align="right">Lämna</TableCell>
               <TableCell align="right">Hämta</TableCell>
@@ -129,12 +117,12 @@ function ViewWeek() {
           <TableBody>
             {dayInfo.map((day) => (
               <TableRow>
-          
+
                 <TableCell align="right">{day.dayDate}</TableCell>
 
                 <TableCell align="right">{day.activity === 1 && <p>{day.userId}</p>} </TableCell>
-         
-                <TableCell align="right">{day.activity === 2 && <p> {day.userId} </p>}</TableCell> 
+
+                <TableCell align="right">{day.activity === 2 && <p> {day.userId} </p>}</TableCell>
               </TableRow>
             ))}
           </TableBody>

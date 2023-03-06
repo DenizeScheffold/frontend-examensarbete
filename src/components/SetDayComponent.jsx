@@ -39,10 +39,10 @@ function SetDay() {
       {}
     ).then(response => {
       if (response.status === 200) {
-        setDayInfo(response.data); 
+        setDayInfo(response.data);
       } else if (response.status === 204) {
         console.log("ingen content, hanterades inom loadSetDay..")
-      } else{
+      } else {
         console.log("något som inte funkade....")
       }
     })
@@ -111,7 +111,9 @@ function SetDay() {
           </TableBody>
         </Table>
       </TableContainer>
+
       <EditDayComponent />
+
     </div>
   );
 }
