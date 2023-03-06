@@ -35,7 +35,7 @@ function SetDay() {
     loadSetDay();
   });
 
-  const loadSetDay = async (error) => {
+  const loadSetDay = async () => {
     await axios.get(
       `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
       {},
@@ -91,11 +91,11 @@ function SetDay() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Your Profile</TableCell>
-              <TableCell align="right">day id</TableCell>
-              <TableCell align="right">week number</TableCell>
-              <TableCell align="right">date</TableCell>
-              <TableCell align="right">activity 1=Lämna, 2=Hämta</TableCell>
+              <TableCell>Ditt Id</TableCell>
+              <TableCell align="right">Day Id</TableCell>
+              <TableCell align="right">Vecka</TableCell>
+              <TableCell align="right">Datum</TableCell>
+              <TableCell align="right">Aktivitet</TableCell>
             </TableRow>
           </TableHead>
 

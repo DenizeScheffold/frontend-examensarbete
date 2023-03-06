@@ -24,14 +24,14 @@ function ViewWeek() {
   const [values, setValues] = React.useState({
     weekNumber: ""
   });
-  const [showErrorMessage, setShowErrorMessage] = React.useState(false)
+
+  //TODO: use names instead of id
+  const [coParentName, setCoParentName] = React.useState("")
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
     console.log(values.data);
   };
-
-
   
   React.useEffect(() => {
    // calculateDays();
@@ -66,6 +66,20 @@ function ViewWeek() {
     })
   };
 
+  
+  const loadCoParentName = async () => {
+    await axios.get(
+      `http://localhost:8080/localhost:8080/api/getCoParentName`,
+      {},
+      {}
+    ).then(response => {
+      if (response.status === 200) {
+        setCoParentName(response.data);
+      } else if (response.status === 204) {
+        console.log("ingen content, hanterades inom loadProcessedDays..")
+      }
+    })
+  };
 
   return (
     <div className="Day">

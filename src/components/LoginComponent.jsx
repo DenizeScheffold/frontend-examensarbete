@@ -33,16 +33,18 @@ function LoginComponent() {
 
     return (
         <div className="LoginComponent">
-            <h1>Time to Login!</h1>
+            <h1>Välkommen till Kindi</h1>
+            <br/>
+            <h3>Logga in här </h3>
             {showErrorMessage && <div className="errorMessage">Authentication Failed.
                 Please check your credentials.</div>}
             <div className="LoginForm">
                 <div>
-                    <label>User Name:</label>
+                    <label>Användarnamn</label>
                     <input type="text" name="username" value={username} onChange={handleUsernameChange} />
                 </div>
                 <div>
-                    <label>Password:</label>
+                    <label>Lösenord</label>
                     <input type="password" name="password" value={password} onChange={handlePasswordChange} />
                 </div>
                 <div>

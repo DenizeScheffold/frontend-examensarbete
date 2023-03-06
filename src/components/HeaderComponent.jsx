@@ -12,38 +12,38 @@ function HeaderComponent() {
 
   return (
     <header className="border-bottom border-light border-5 mb-5 p-2">
-    <div className="container">
-      <div className="row">
-        <nav className="navbar navbar-expand-lg">
-        
-       
+      <div className="container">
+        <div className="row">
+          <nav className="navbar navbar-expand-lg">
+
+
             <ul className="navbar-nav">
               <li className="nav-item">
                 {isAuthenticated && (
                   <Link className="nav-link" to="/welcome/user">
-                    Home
+                    Kindi
                   </Link>
                 )}
               </li>
             </ul>
 
-                     
+
             <ul className="navbar-nav">
               <li className="nav-item">
                 {isAuthenticated && (
-                  <Link className="nav-link" to="/setdays"> 
-                  {/* to={`/setdays/${authContext.userId}`}> */}
-                    Plan your days
+                  <Link className="nav-link" to="/setdays">
+                    {/* to={`/setdays/${authContext.userId}`}> */}
+                    Planera dagar
                   </Link>
                 )}
               </li>
             </ul>
-            
+
             <ul className="navbar-nav">
               <li className="nav-item">
                 {isAuthenticated && (
                   <Link className="nav-link" to="/viewweek">
-                    View plans
+                    Se er plan
                   </Link>
                 )}
               </li>
@@ -53,7 +53,7 @@ function HeaderComponent() {
               <li className="nav-item">
                 {isAuthenticated && (
                   <Link className="nav-link" to={`/profile`}>
-                    Profile
+                    Profil
                   </Link>
                 )}
               </li>
@@ -61,47 +61,36 @@ function HeaderComponent() {
 
             <ul className="navbar-nav">
               <li className="nav-item">
-                {isAuthenticated && (
-                  <Link className="nav-link" to={`/editprofile`}>
-                    Edit Profile
+                {!isAuthenticated && (
+                  <Link className="nav-link" to="/signup">
+                    Signup
                   </Link>
                 )}
               </li>
             </ul>
 
-
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              {!isAuthenticated && (
-                <Link className="nav-link" to="/signup">
-                  Signup
-                </Link>
-              )}
-            </li>
-            </ul>
-
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              {!isAuthenticated && (
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
-              )}
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                {!isAuthenticated && (
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
+                )}
 
               </li>
 
-            <li className="nav-item">
-              {isAuthenticated && (
-                <Link className="nav-link" to="/logout" onClick={logout}>
-                  Logout
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
+              <li className="nav-item">
+                {isAuthenticated && (
+                  <Link className="nav-link" to="/logout" onClick={logout}>
+                    Logout
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
   );
 }
 
