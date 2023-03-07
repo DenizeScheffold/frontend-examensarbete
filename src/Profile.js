@@ -22,7 +22,7 @@ function Profile() {
 
   React.useEffect(() => {
     loadProfile();
-  });
+  },[]);
 
   const loadProfile = async () => {
     const result = await axios.get(

@@ -1,16 +1,32 @@
 import React from "react";
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
 function WelcomeComponent() {
 
-    const {username } = useParams()
+    const { username } = useParams()
 
     return (
+
         <div className="WelcomeComponent">
-            <h1>Välkommen {username}</h1>
-            </div>
+            <Grid
+                container
+                direction="column"
+                justifyContent="space-between"
+                alignItems="center"
+                maxWidth="90%"
+                marginTop="auto"
+                marginLeft="4%"
+                spacing={2}
+            >
+                <Grid item>
+                    <Typography variant="h3">Välkommen {username}</Typography>
+                </Grid>
+            </Grid>
+        </div>
     )
-         
+
 }
 
 export default WelcomeComponent

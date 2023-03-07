@@ -19,7 +19,6 @@ function EditDay() {
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
-    console.log(values.data);
   };
 
   const navigate = useNavigate()

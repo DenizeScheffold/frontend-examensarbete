@@ -25,12 +25,11 @@ function SetDay() {
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
-    console.log(values.data);
   };
 
   React.useEffect(() => {
     loadSetDay();
-  });
+  },[]);
 
   const loadSetDay = async () => {
     await axios.get(

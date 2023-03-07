@@ -31,13 +31,15 @@ export default function AuthProvider({ children }) {
         setUsername(username);
         setToken(jwtToken);
 
-        axios.interceptors.request.use((config) => {
+        axios.interceptors.request.use(
+          (config) => {
           console.log("intercepting and adding a token");
           config.headers.Authorization = jwtToken;
           return config;
         });
 
         return true;
+        
       } else {
         logout();
         return false;

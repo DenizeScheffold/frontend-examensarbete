@@ -7,7 +7,7 @@ function UserName({ userId }) {
 
     React.useEffect(() => {
         loadParentName({ userId });
-    });
+    },[]);
 
     const loadParentName = ({ userId }) => {
 
