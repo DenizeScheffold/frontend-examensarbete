@@ -2,6 +2,10 @@ import React from "react";
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
 
 function LoginComponent() {
 
@@ -29,24 +33,45 @@ function LoginComponent() {
 
     return (
         <div className="LoginComponent">
-            <h1>Välkommen till Kindi</h1>
-            <br/>
-            <h3>Logga in här </h3>
-            {showErrorMessage && <div className="errorMessage">Authentication Failed.
-                Please check your credentials.</div>}
-            <div className="LoginForm">
-                <div>
-                    <label>Användarnamn</label>
-                    <input type="text" name="username" value={username} onChange={handleUsernameChange} />
+            <Grid
+                container
+                direction="column"
+                justifyContent="space-between"
+                alignItems="center"
+                maxWidth="90%"
+                marginTop="auto"
+                marginLeft="4%"
+                spacing={2}
+            >
+                <Grid item>
+                    <Typography variant="h3">Välkommen till Kindi</Typography>
+                </Grid>
+
+                {showErrorMessage && <div className="errorMessage">Authentication Failed.
+                    Please check your credentials.</div>}
+                <div className="LoginForm">
+                    <div>
+                        <InputLabel >
+                            Användarnamn
+                        </InputLabel>
+                        <input type="text" name="username" value={username} onChange={handleUsernameChange} />
+                    </div>
+                    <div>
+                        <InputLabel >
+                            Lösenord
+                        </InputLabel>
+                        <input type="password" name="password" value={password} onChange={handlePasswordChange} />
+                    </div>
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={handleSubmit}
+                        sx={{ mt: 1 }}
+                    >
+                        <Typography >LOGGA IN</Typography>
+                    </Button>
                 </div>
-                <div>
-                    <label>Lösenord</label>
-                    <input type="password" name="password" value={password} onChange={handlePasswordChange} />
-                </div>
-                <div>
-                    <button type="button" name="login" onClick={handleSubmit}>login</button>
-                </div>
-            </div>
+            </Grid>
         </div>
     )
 }

@@ -19,7 +19,7 @@ export default function CreateUser() {
     password: "",
     passwordConf: "",
     otherParentId: "",
-    username:"",
+    username: "",
     email: "",
     showPassword: false,
   });
@@ -96,11 +96,12 @@ export default function CreateUser() {
       e.preventDefault();
       inputPassword.current.focus();
     }
-    else{
-      axios.post("http://localhost:8080/api/auth/signup", 
-      {email: values.email, otherParentId: values.otherParentId, username: values.username, password: values.password, role:"USER"
-    },{
-    })
+    else {
+      axios.post("http://localhost:8080/api/auth/signup",
+        {
+          email: values.email, otherParentId: values.otherParentId, username: values.username, password: values.password, role: "USER"
+        }, {
+      })
     }
 
   };
@@ -148,11 +149,11 @@ export default function CreateUser() {
               sx={{ borderRadius: "29px" }}
             />
           </FormControl>
-          </Grid>
-          <Grid item sx={{ width: 0.5 }}>
+        </Grid>
+        <Grid item sx={{ width: 0.5 }}>
           <FormControl fullWidth>
             <InputLabel >
-            otherParentId
+              Medförälders Id - kan justeras i efterhand under redigera profil
             </InputLabel>
             <OutlinedInput
               label="otherParentId"
@@ -161,11 +162,11 @@ export default function CreateUser() {
               sx={{ borderRadius: "29px" }}
             />
           </FormControl>
-          </Grid>
-          <Grid item sx={{ width: 0.5 }}>
+        </Grid>
+        <Grid item sx={{ width: 0.5 }}>
           <FormControl fullWidth>
             <InputLabel>
-            username
+              Användarnamn
             </InputLabel>
             <OutlinedInput
               label="username"
@@ -214,10 +215,10 @@ export default function CreateUser() {
               }
             />
           </FormControl>
-          </Grid>
-          <Grid item sx={{ width: 0.5 }}>
+        </Grid>
+        <Grid item sx={{ width: 0.5 }}>
           <FormControl fullWidth>
-            <InputLabel      
+            <InputLabel
               color={
                 errors.passwordMatchError || errors.passwordReqError
                   ? "error"
