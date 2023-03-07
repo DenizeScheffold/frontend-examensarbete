@@ -14,11 +14,19 @@ mysql -uroot -proot
 
 create database examensarbete;
 
-To run frontend: https://github.com/DenizeScheffold/frontend-examensarbete
+To run frontend: https://github.com/DenizeScheffold/kindi.git
+
+In cmd: 
 npm install
 npm install axios
 npm start
 
-To login:
+to run: 
+npm start
 
-To set week:
+To login: 
+in browser: localhost:3000 
+username: Kattis 
+password: abb
+
+Weeks prepared in the database: 2,3,4 - use those when you play around in the application
