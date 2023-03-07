@@ -29,7 +29,7 @@ function SetDay() {
 
   React.useEffect(() => {
     loadSetDay();
-  },[]);
+  });
 
   const loadSetDay = async () => {
     await axios.get(

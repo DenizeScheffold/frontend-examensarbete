@@ -23,7 +23,8 @@ function EditDay() {
 
   const navigate = useNavigate()
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios.patch(`http://localhost:8080/api/editDay/${values.dayId}`,
       {
         dayId: values.dayId, possible: values.possible
