@@ -12,11 +12,6 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import EditDayComponent from "./EditDayComponent"
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom'
 import { Button } from "@mui/material";
@@ -32,45 +27,30 @@ function SetDay() {
 
   const [checked, setChecked] = React.useState(true);
 
-  const [values, setValues] = React.useState({
-    dayId: "",
-    possible: false,
-  });
-
   const [possibleValue, setPossible] = React.useState(true);
 
   const [dayIdValue, setDayIdValue] = React.useState("");
 
   const [showErrorMessage, setShowErrorMessage] = React.useState(false)
 
+  const [onSuccessMessage, setOnSucessMessage] = React.useState(false)
+
+
   const handleChange = (prop) => (e) => {
     setValue({ ...value, [prop]: e.target.value });
   };
 
   const handleCheckNo = (dayId) => {
-
-
     setDayIdValue(dayId);
     setChecked(checked);
     setPossible(!checked);
+    console.log("the result: ", possibleValue, dayIdValue)
   }
   const handleCheck = (dayId) => {
-
 
     setDayIdValue(dayId);
     setChecked(!checked);
     setPossible(checked);
-
-    /*
-    if(checked===true){
-    setPossible(true);
-    } if (checked===false){
-      setPossible(false);
-    }
-    */
-
-    // setDayIdValue(...day, [prop]: e.target.value )
-
     console.log("the result: ", possibleValue, dayIdValue)
   };
 
@@ -107,14 +87,13 @@ function SetDay() {
       {
         dayId: dayIdValue, possible: possibleValue
       }, {})
+      
     navigate(`/setdays`)
   };
 
 
   return (
     <div className="Day">
-
-
       <form onSubmit={handleChange}>
         <Grid
           container
@@ -149,8 +128,21 @@ function SetDay() {
         </Grid>
       </form>
 
-
+      
       <form onSubmit={handleSubmit}>
+      <Grid
+          container
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          maxWidth="90%"
+          marginTop="auto"
+          marginLeft="4%"
+          spacing={2}
+        >
+      {onSuccessMessage && <div className="successmessage" style={{color: 'green'}}>Aktivitet sparades!
+          </div>}
+          </Grid>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="a dense table">
             <TableHead>
@@ -177,7 +169,6 @@ function SetDay() {
                     <TableCell component="th" scope="row">
                       Ja
                       <Checkbox
-                        defaultChecked
                         key={"possible"}
                         onChange={() => handleCheck(day.dayId)}
                         inputProps={{ 'aria-label': 'controlled' }} label="possible"
@@ -211,8 +202,9 @@ function SetDay() {
             </TableBody>
           </Table>
         </TableContainer>
-
+    
       </form>
+    
     </div>
   );
 }

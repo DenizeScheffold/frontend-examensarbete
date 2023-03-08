@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from 'react-router-dom'
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import RadioBtn from "./RadioBtnComponent";
 
 function WelcomeComponent() {
 
@@ -25,8 +24,6 @@ function WelcomeComponent() {
                     <Typography variant="h3">Välkommen {username}</Typography>
                 </Grid>
             </Grid>
-
-            <RadioBtn></RadioBtn>
         </div>
     )
 
