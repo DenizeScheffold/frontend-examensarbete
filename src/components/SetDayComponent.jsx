@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from "@mui/material";
 
 function SetDay() {
+  
   const [dayInfo, setDayInfo] = React.useState([]
   );
 
@@ -27,12 +28,16 @@ function SetDay() {
     weekNumber: ""
   });
 
-  const [checked, setChecked] = React.useState(true);
+  const [isChecked, setIsChecked] = React.useState(false);
 
   const [values, setValues] = React.useState({
     dayId: "",
-    possible: "",
+    possible: true,
   });
+
+  const [possibleValue, setPossible] = React.useState(true);
+  
+  const [dayIdValue, setDayIdValue] = React.useState("");
 
   const [showErrorMessage, setShowErrorMessage] = React.useState(false)
 
@@ -41,9 +46,16 @@ function SetDay() {
   };
 
 
-  const handleCheck = (prop) => (e) =>  {
-    setChecked(e.target.checked); 
-    setValues({ ...values, [prop]: e.target.value });
+  const handleCheck = (dayId, isChecked) =>  {
+    setDayIdValue(dayId);
+    if(isChecked){
+    setPossible(true);
+    } else if (!isChecked){
+      setPossible(false);
+    }
+   // setDayIdValue(...day, [prop]: e.target.value )
+   
+    console.log("the result: ", possibleValue, dayIdValue)
   };
   
   
@@ -149,11 +161,15 @@ function SetDay() {
                 <TableCell align="right">{day.dayDate}</TableCell>
                 <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>} 
                 <Checkbox
-                      value={day.dayId}
+                    
+                          key={day.dayId}
+                         //value={[values.possible, values.dayId]}
                      // defaultChecked
-                     // checked={checked}
-                      onChange={(e) => handleCheck(e.target.value)}
-                      inputProps={{ 'aria-label': 'controlled' }} label="Kan" /></TableCell>
+                      checked={isChecked}
+                      onChange={() => handleCheck(day.dayId, isChecked)}
+                      inputProps={{ 'aria-label': 'controlled' }} label="possible" 
+                      />
+                      </TableCell>
               </TableRow>
             ))}
           </TableBody>
