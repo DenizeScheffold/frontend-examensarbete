@@ -16,28 +16,39 @@ import EditDayComponent from "./EditDayComponent"
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { useNavigate } from 'react-router-dom'
+import { Button } from "@mui/material";
 
 function SetDay() {
   const [dayInfo, setDayInfo] = React.useState([]
   );
 
-  const [values, setValues] = React.useState({
+  const [value, setValue] = React.useState({
     weekNumber: ""
   });
 
   const [checked, setChecked] = React.useState(true);
 
-  
+  const [values, setValues] = React.useState({
+    dayId: "",
+    possible: "",
+  });
+
   const [showErrorMessage, setShowErrorMessage] = React.useState(false)
 
   const handleChange = (prop) => (e) => {
+    setValue({ ...value, [prop]: e.target.value });
+  };
+
+
+  const handleCheck = (prop) => (e) =>  {
+    setChecked(e.target.checked); 
     setValues({ ...values, [prop]: e.target.value });
   };
+  
+  
 
-
-  const handleCheck = (event) => {
-    setChecked(event.target.checked);
-  };
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     loadSetDay();
@@ -45,7 +56,7 @@ function SetDay() {
 
   const loadSetDay = async () => {
     await axios.get(
-      `http://localhost:8080/api/getDaysNotSet/${values.weekNumber}`,
+      `http://localhost:8080/api/getDaysNotSet/${value.weekNumber}`,
       {},
       {}
     ).then(response => {
@@ -62,9 +73,22 @@ function SetDay() {
 
   };
 
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.patch(`http://localhost:8080/api/editDay/${values.dayId}`,
+      {
+        dayId: values.dayId, possible: values.possible
+      }, {})
+    console.log(values.data);
+    navigate(`/setdays`)
+  };
+
 
   return (
     <div className="Day">
+      
+    
       <form onSubmit={handleChange}>
         <Grid
           container
@@ -90,7 +114,7 @@ function SetDay() {
               </InputLabel>
               <OutlinedInput
                 label="weekNumber"
-                value={values.weekNumber}
+                value={value.weekNumber}
                 onChange={handleChange("weekNumber")}
                 sx={{ borderRadius: "29px" }}
               />
@@ -100,6 +124,7 @@ function SetDay() {
       </form>
 
 
+      <form onSubmit={handleSubmit}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -108,8 +133,7 @@ function SetDay() {
               <TableCell align="right">Day Id</TableCell>
               <TableCell align="right">Vecka</TableCell>
               <TableCell align="right">Datum</TableCell>
-              <TableCell align="right">Kan</TableCell>
-              <TableCell align="right">Aktivitet</TableCell>
+              <TableCell align="right">Kryssa i om du kan</TableCell>
 
             </TableRow>
           </TableHead>
@@ -123,24 +147,27 @@ function SetDay() {
                 <TableCell align="right">{day.dayId}</TableCell>
                 <TableCell align="right">{day.weekNumber}</TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
-                <TableCell align="right">
-                  <FormGroup>
-                    <FormControlLabel control={<Checkbox
-                      defaultChecked
-                      checked={checked}
-                      onChange={handleCheck}
-                      inputProps={{ 'aria-label': 'controlled' }} />} label="Kan" />
-                  </FormGroup>
-                </TableCell>
-                <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}</TableCell>
+                <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>} 
+                <Checkbox
+                      value={day.dayId}
+                     // defaultChecked
+                     // checked={checked}
+                      onChange={(e) => handleCheck(e.target.value)}
+                      inputProps={{ 'aria-label': 'controlled' }} label="Kan" /></TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <Button
+          fullWidth
+          variant="contained"
+          type="submit"
 
-      <EditDayComponent />
-
+        >
+          Klar
+        </Button>
+        </form>
     </div>
   );
 }
