@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import EditDayComponent from "./EditDayComponent"
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -46,10 +48,16 @@ function SetDay() {
   };
 
 
-  const handleCheck = (dayId) => {
+  const handleCheck = (dayId) => (event) => {
+    setDayIdValue(dayId);
+    setPossible(event.target.value);
+    
+
+    /*
     setDayIdValue(dayId);
     setChecked(!checked);
     setPossible(checked);
+    
     /*
     if(checked===true){
     setPossible(true);
@@ -165,11 +173,20 @@ function SetDay() {
                   <TableCell align="right">{day.weekNumber}</TableCell>
                   <TableCell align="right">{day.dayDate}</TableCell>
                   <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}
-                    <Checkbox
+                    <RadioGroup
+                      aria-labelledby="demo-controlled-radio-buttons-group"
+                      name="controlled-radio-buttons-group"
+                      value={possibleValue}
+                      onChange={() => handleCheck(day.dayId)}
+                    >
+                      <FormControlLabel value={true} control={<Radio />} label="Kan" />
+                      <FormControlLabel value={false} control={<Radio />} label="Kan inte" />
+                    </RadioGroup>
+                    {/*    <Checkbox
                       key={day.dayId}
                       onChange={() => handleCheck(day.dayId)}
                       inputProps={{ 'aria-label': 'controlled' }} label="possible"
-                    />
+                    /> */}
                   </TableCell>
                   <TableCell align="right">
                     <Button

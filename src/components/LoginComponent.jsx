@@ -47,8 +47,7 @@ function LoginComponent() {
                     <Typography variant="h3">Välkommen till Kindi</Typography>
                 </Grid>
 
-                {showErrorMessage && <div className="errorMessage">Authentication Failed.
-                    Please check your credentials.</div>}
+                {showErrorMessage && <div className="errorMessage">Du kan inte logga in. Användarnamn eller lösenord stämmer inte. Vänligen prova igen.</div>}
                 <div className="LoginForm">
                     <div>
                         <InputLabel >
