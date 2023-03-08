@@ -47,17 +47,20 @@ function SetDay() {
     setValue({ ...value, [prop]: e.target.value });
   };
 
+  const handleCheckNo = (dayId) => {
 
-  const handleCheck = (dayId) => (event) => {
+
     setDayIdValue(dayId);
-    setPossible(event.target.value);
-    
+    setChecked(checked);
+    setPossible(!checked);
+  }
+  const handleCheck = (dayId) => {
 
-    /*
+
     setDayIdValue(dayId);
     setChecked(!checked);
     setPossible(checked);
-    
+
     /*
     if(checked===true){
     setPossible(true);
@@ -70,8 +73,6 @@ function SetDay() {
 
     console.log("the result: ", possibleValue, dayIdValue)
   };
-
-
 
   const navigate = useNavigate()
 
@@ -173,15 +174,22 @@ function SetDay() {
                   <TableCell align="right">{day.weekNumber}</TableCell>
                   <TableCell align="right">{day.dayDate}</TableCell>
                   <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}
-                    <RadioGroup
-                      aria-labelledby="demo-controlled-radio-buttons-group"
-                      name="controlled-radio-buttons-group"
-                      value={possibleValue}
-                      onChange={() => handleCheck(day.dayId)}
-                    >
-                      <FormControlLabel value={true} control={<Radio />} label="Kan" />
-                      <FormControlLabel value={false} control={<Radio />} label="Kan inte" />
-                    </RadioGroup>
+                    <TableCell component="th" scope="row">
+                      Ja
+                      <Checkbox
+                        defaultChecked
+                        key={"possible"}
+                        onChange={() => handleCheck(day.dayId)}
+                        inputProps={{ 'aria-label': 'controlled' }} label="possible"
+                      />
+                      Nej
+                      <Checkbox
+                        key={"notPossible"}
+                        onChange={() => handleCheckNo(day.dayId)}
+                        inputProps={{ 'aria-label': 'controlled' }} label="notPossible"
+                      />
+
+                    </TableCell>
                     {/*    <Checkbox
                       key={day.dayId}
                       onChange={() => handleCheck(day.dayId)}
