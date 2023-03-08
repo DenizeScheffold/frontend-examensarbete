@@ -6,16 +6,14 @@ import { Button } from "@mui/material";
 
 function CalculatePlans() {
 
-
-
   const startCalc = async (e) => {
     const result = await axios.get(
-        `http://localhost:8080/api/getPlanForProcessUser`,
-        {},
-        {}
-      )
+      `http://localhost:8080/api/getPlanForProcessUser`,
+      {},
+      {}
+    )
       .catch((err) => console.log(err));
-      console.log(result);
+    console.log(result);
 
   };
 
@@ -23,15 +21,14 @@ function CalculatePlans() {
 
     <div className="App">
 
-        <Button
-          fullWidth
-          variant="contained"
-          onClick=
-           {startCalc}
-          
-        >
-          Räkna ut schemat
-        </Button>
+      <Button
+        fullWidth
+        variant="contained"
+        onClick=
+        {startCalc}
+      >
+        Räkna ut schemat
+      </Button>
 
 
     </div>

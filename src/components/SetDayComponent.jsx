@@ -57,7 +57,7 @@ function SetDay() {
       setPossible(false);
     }
     */
-    
+
     // setDayIdValue(...day, [prop]: e.target.value )
 
     console.log("the result: ", possibleValue, dayIdValue)
@@ -118,7 +118,7 @@ function SetDay() {
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h3">Välj vecka</Typography>
+            <Typography variant="h4">Välj vecka</Typography>
           </Grid>
           {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
             Du har redan planerat dessa dagar, dessa kan du hitta på SE ER PLAN.
@@ -143,7 +143,7 @@ function SetDay() {
 
       <form onSubmit={handleSubmit}>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ minWidth: 650 }} aria-label="a dense table">
             <TableHead>
               <TableRow>
                 <TableCell>Ditt Id</TableCell>
@@ -151,7 +151,7 @@ function SetDay() {
                 <TableCell align="right">Vecka</TableCell>
                 <TableCell align="right">Datum</TableCell>
                 <TableCell align="right">Kryssa i om du kan</TableCell>
-
+                <TableCell align="right">Klicka när du är klar</TableCell>
               </TableRow>
             </TableHead>
 
@@ -166,29 +166,27 @@ function SetDay() {
                   <TableCell align="right">{day.dayDate}</TableCell>
                   <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}
                     <Checkbox
-                        key={day.dayId}
-                        //value={[values.possible, values.dayId]}
-                       // defaultChecked
-                       //checked={checked}
-                       
-                        onChange={() => handleCheck(day.dayId)}
-                        inputProps={{ 'aria-label': 'controlled' }} label="possible"
-                      />
-                
+                      key={day.dayId}
+                      onChange={() => handleCheck(day.dayId)}
+                      inputProps={{ 'aria-label': 'controlled' }} label="possible"
+                    />
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button
+                      size="small"
+                      variant="contained"
+                      type="submit"
+                    >
+                      Klar
+                    </Button>
+
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
-        <Button
-          fullWidth
-          variant="contained"
-          type="submit"
 
-        >
-          Klar
-        </Button>
       </form>
     </div>
   );

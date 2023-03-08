@@ -76,7 +76,7 @@ function ViewWeek() {
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h3">Välj vecka</Typography>
+            <Typography variant="h4">Välj vecka</Typography>
           </Grid>
           {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
             Testa att klicka på knappen Räkna ut schemat och testa igen.
