@@ -13,6 +13,9 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import EditDayComponent from "./EditDayComponent"
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 function SetDay() {
   const [dayInfo, setDayInfo] = React.useState([]
@@ -22,9 +25,16 @@ function SetDay() {
     weekNumber: ""
   });
 
+  const [checked, setChecked] = React.useState(true);
+
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
+  };
+
+  
+  const handleCheck = (event) => {
+    setChecked(event.target.checked);
   };
 
   React.useEffect(() => {
@@ -91,7 +101,9 @@ function SetDay() {
               <TableCell align="right">Day Id</TableCell>
               <TableCell align="right">Vecka</TableCell>
               <TableCell align="right">Datum</TableCell>
+              <TableCell align="right">Kan</TableCell>
               <TableCell align="right">Aktivitet</TableCell>
+
             </TableRow>
           </TableHead>
 
@@ -104,6 +116,15 @@ function SetDay() {
                 <TableCell align="right">{day.dayId}</TableCell>
                 <TableCell align="right">{day.weekNumber}</TableCell>
                 <TableCell align="right">{day.dayDate}</TableCell>
+                <TableCell align="right">
+                  <FormGroup>
+                    <FormControlLabel control={<Checkbox 
+                      defaultChecked
+                      checked={checked}
+                      onChange={handleCheck}
+                      inputProps={{ 'aria-label': 'controlled' }} />} label="Kan" />
+                  </FormGroup>
+                </TableCell>
                 <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}</TableCell>
               </TableRow>
             ))}

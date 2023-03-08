@@ -27,6 +27,7 @@ function ViewWeek() {
     weekNumber: ""
   });
 
+  const [showErrorMessage, setShowErrorMessage] = React.useState(false)
 
 
   const handleChange = (prop) => (e) => {
@@ -47,7 +48,9 @@ function ViewWeek() {
     ).then(response => {
       if (response.status === 200) {
         setDayInfo(response.data);
+        setShowErrorMessage(false)
       } else if (response.status === 204) {
+        setShowErrorMessage(true)
         console.log("ingen content, hanterades inom loadProcessedDays..")
       }
     })
@@ -75,7 +78,8 @@ function ViewWeek() {
           <Grid item>
             <Typography variant="h3">Välj vecka</Typography>
           </Grid>
-
+          {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan. Testa att klicka på knappen Räkna ut schemat och testa igen. 
+                    </div>}
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
               <InputLabel >
