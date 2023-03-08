@@ -27,12 +27,14 @@ function SetDay() {
 
   const [checked, setChecked] = React.useState(true);
 
+  
+  const [showErrorMessage, setShowErrorMessage] = React.useState(false)
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
   };
 
-  
+
   const handleCheck = (event) => {
     setChecked(event.target.checked);
   };
@@ -49,7 +51,9 @@ function SetDay() {
     ).then(response => {
       if (response.status === 200) {
         setDayInfo(response.data);
+        setShowErrorMessage(false)
       } else if (response.status === 204) {
+        setShowErrorMessage(true)
         console.log("ingen content, hanterades inom loadSetDay..")
       } else {
         console.log("något som inte funkade....")
@@ -75,7 +79,10 @@ function SetDay() {
           <Grid item>
             <Typography variant="h3">Choose week</Typography>
           </Grid>
-
+          {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
+            Du har redan planerat dessa dagar, dessa kan du hitta på SE ER PLAN. 
+            <br/> Veckor som finns tillgängliga för dig är 2-4. 
+          </div>}
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
               <InputLabel >
@@ -118,7 +125,7 @@ function SetDay() {
                 <TableCell align="right">{day.dayDate}</TableCell>
                 <TableCell align="right">
                   <FormGroup>
-                    <FormControlLabel control={<Checkbox 
+                    <FormControlLabel control={<Checkbox
                       defaultChecked
                       checked={checked}
                       onChange={handleCheck}
