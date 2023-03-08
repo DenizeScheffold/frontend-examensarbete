@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from "@mui/material";
 
 function SetDay() {
-  
+
   const [dayInfo, setDayInfo] = React.useState([]
   );
 
@@ -28,15 +28,15 @@ function SetDay() {
     weekNumber: ""
   });
 
-  const [isChecked, setIsChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState(true);
 
   const [values, setValues] = React.useState({
     dayId: "",
-    possible: true,
+    possible: false,
   });
 
-  const [possibleValue, setPossible] = React.useState(false);
-  
+  const [possibleValue, setPossible] = React.useState(true);
+
   const [dayIdValue, setDayIdValue] = React.useState("");
 
   const [showErrorMessage, setShowErrorMessage] = React.useState(false)
@@ -46,19 +46,24 @@ function SetDay() {
   };
 
 
-  const handleCheck = (dayId, isChecked) =>  {
+  const handleCheck = (dayId) => {
     setDayIdValue(dayId);
-    if(isChecked){
+    setChecked(!checked);
+    setPossible(checked);
+    /*
+    if(checked===true){
     setPossible(true);
-    } else if (!isChecked){
+    } if (checked===false){
       setPossible(false);
     }
-   // setDayIdValue(...day, [prop]: e.target.value )
-   
+    */
+    
+    // setDayIdValue(...day, [prop]: e.target.value )
+
     console.log("the result: ", possibleValue, dayIdValue)
   };
-  
-  
+
+
 
   const navigate = useNavigate()
 
@@ -85,7 +90,7 @@ function SetDay() {
 
   };
 
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("the result in submit: ", possibleValue, dayIdValue)
@@ -93,15 +98,14 @@ function SetDay() {
       {
         dayId: dayIdValue, possible: possibleValue
       }, {})
-    console.log(values.data);
     navigate(`/setdays`)
   };
 
 
   return (
     <div className="Day">
-      
-    
+
+
       <form onSubmit={handleChange}>
         <Grid
           container
@@ -114,16 +118,16 @@ function SetDay() {
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h3">Choose week</Typography>
+            <Typography variant="h3">Välj vecka</Typography>
           </Grid>
           {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
-            Du har redan planerat dessa dagar, dessa kan du hitta på SE ER PLAN. 
-            <br/> Veckor som finns tillgängliga för dig är 2-4. 
+            Du har redan planerat dessa dagar, dessa kan du hitta på SE ER PLAN.
+            <br /> Veckor som finns tillgängliga för dig är 2-4.
           </div>}
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
               <InputLabel >
-                Week Number
+                Veckonummer
               </InputLabel>
               <OutlinedInput
                 label="weekNumber"
@@ -138,45 +142,46 @@ function SetDay() {
 
 
       <form onSubmit={handleSubmit}>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Ditt Id</TableCell>
-              <TableCell align="right">Day Id</TableCell>
-              <TableCell align="right">Vecka</TableCell>
-              <TableCell align="right">Datum</TableCell>
-              <TableCell align="right">Kryssa i om du kan</TableCell>
-
-            </TableRow>
-          </TableHead>
-
-          <TableBody>
-            {dayInfo.map((day) => (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
               <TableRow>
-                <TableCell component="th" scope="row">
-                  {day.userId}
-                </TableCell>
-                <TableCell align="right">{day.dayId}</TableCell>
-                <TableCell align="right">{day.weekNumber}</TableCell>
-                <TableCell align="right">{day.dayDate}</TableCell>
-                <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>} 
-                <Checkbox
-                    
-                          key={day.dayId}
-                         //value={[values.possible, values.dayId]}
-                     // defaultChecked
-                      //checked={isChecked}
-                      onChange={() => handleCheck(day.dayId, isChecked)}
-                      inputProps={{ 'aria-label': 'controlled' }} label="possible" 
-                      />
-                      </TableCell>
+                <TableCell>Ditt Id</TableCell>
+                <TableCell align="right">Day Id</TableCell>
+                <TableCell align="right">Vecka</TableCell>
+                <TableCell align="right">Datum</TableCell>
+                <TableCell align="right">Kryssa i om du kan</TableCell>
+
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Button
+            </TableHead>
+
+            <TableBody>
+              {dayInfo.map((day) => (
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    {day.userId}
+                  </TableCell>
+                  <TableCell align="right">{day.dayId}</TableCell>
+                  <TableCell align="right">{day.weekNumber}</TableCell>
+                  <TableCell align="right">{day.dayDate}</TableCell>
+                  <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}
+                    <Checkbox
+                        key={day.dayId}
+                        //value={[values.possible, values.dayId]}
+                       // defaultChecked
+                       //checked={checked}
+                       
+                        onChange={() => handleCheck(day.dayId)}
+                        inputProps={{ 'aria-label': 'controlled' }} label="possible"
+                      />
+                
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Button
           fullWidth
           variant="contained"
           type="submit"
@@ -184,7 +189,7 @@ function SetDay() {
         >
           Klar
         </Button>
-        </form>
+      </form>
     </div>
   );
 }
