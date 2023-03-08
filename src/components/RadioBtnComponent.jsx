@@ -33,14 +33,14 @@ const [checked, setChecked] = React.useState(true);
 
 
 
-const handleChangeNo = (dayId) => {
+const handleCheckNo = (dayId) => {
   
 
     setDayIdValue(dayId);
     setChecked(checked);
     setPossible(!checked);
 }
-const handleChange = (dayId) => {
+const handleCheck = (dayId) => {
   
 
   setDayIdValue(dayId);
