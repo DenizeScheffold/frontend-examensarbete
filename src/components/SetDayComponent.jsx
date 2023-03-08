@@ -35,7 +35,7 @@ function SetDay() {
     possible: true,
   });
 
-  const [possibleValue, setPossible] = React.useState(true);
+  const [possibleValue, setPossible] = React.useState(false);
   
   const [dayIdValue, setDayIdValue] = React.useState("");
 
@@ -88,9 +88,10 @@ function SetDay() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.patch(`http://localhost:8080/api/editDay/${values.dayId}`,
+    console.log("the result in submit: ", possibleValue, dayIdValue)
+    axios.patch(`http://localhost:8080/api/editDay/${dayIdValue}`,
       {
-        dayId: values.dayId, possible: values.possible
+        dayId: dayIdValue, possible: possibleValue
       }, {})
     console.log(values.data);
     navigate(`/setdays`)
@@ -165,7 +166,7 @@ function SetDay() {
                           key={day.dayId}
                          //value={[values.possible, values.dayId]}
                      // defaultChecked
-                      checked={isChecked}
+                      //checked={isChecked}
                       onChange={() => handleCheck(day.dayId, isChecked)}
                       inputProps={{ 'aria-label': 'controlled' }} label="possible" 
                       />
