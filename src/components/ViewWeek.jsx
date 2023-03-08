@@ -78,7 +78,9 @@ function ViewWeek() {
           <Grid item>
             <Typography variant="h3">Välj vecka</Typography>
           </Grid>
-          {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan. Testa att klicka på knappen Räkna ut schemat och testa igen. 
+          {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan. 
+          Testa att klicka på knappen Räkna ut schemat och testa igen. 
+          Alternativt har du och medföräldern inte planerat just denna veckan.
                     </div>}
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
