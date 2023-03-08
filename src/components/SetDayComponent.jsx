@@ -25,7 +25,7 @@ function SetDay() {
     weekNumber: ""
   });
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const [possibleValue, setPossible] = React.useState(true);
 
@@ -83,10 +83,14 @@ function SetDay() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("the result in submit: ", possibleValue, dayIdValue)
-    axios.patch(`http://localhost:8080/api/editDay/${dayIdValue}`,
+    if(axios.patch(`http://localhost:8080/api/editDay/${dayIdValue}`,
       {
         dayId: dayIdValue, possible: possibleValue
-      }, {})
+      }, {})){
+        setOnSucessMessage(true);
+      } else{
+        setOnSucessMessage(false);
+      }
       
     navigate(`/setdays`)
   };
