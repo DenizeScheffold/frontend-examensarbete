@@ -166,7 +166,7 @@ function SetDay() {
                   <TableCell align="right">{day.dayId}</TableCell>
                   <TableCell align="right">{day.weekNumber}</TableCell>
                   <TableCell align="right">{day.dayDate}</TableCell>
-                  <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}</TableCell>
+                  <TableCell align="right">{day.activity === 1 ? <p><b>Lämna</b></p> : <p><b>Hämta</b></p>}</TableCell>
                     <TableCell component="th" scope="row">
                       <FormGroup row>
                         <FormControlLabel control={
