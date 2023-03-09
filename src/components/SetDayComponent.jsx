@@ -109,10 +109,11 @@ function SetDay() {
           maxWidth="90%"
           marginTop="auto"
           marginLeft="4%"
+          marginBottom="5%"
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h4">Välj vecka</Typography>
+            <Typography variant="h5">Välj veckan du vill planera</Typography>
           </Grid>
           {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
             Dagarna är redan planerade och finns på <b>Se er plan </b> i huvudmenyn.

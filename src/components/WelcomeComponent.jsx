@@ -21,7 +21,7 @@ function WelcomeComponent() {
                 spacing={2}
             >
                 <Grid item>
-                    <Typography variant="h3">Välkommen {username}</Typography>
+                    <Typography variant="h4">Välkommen {username}</Typography>
                 </Grid>
             </Grid>
         </div>

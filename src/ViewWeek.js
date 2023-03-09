@@ -69,10 +69,11 @@ function ViewWeek() {
           maxWidth="90%"
           marginTop="auto"
           marginLeft="4%"
+          marginBottom="5%"
           spacing={2}
         >
           <Grid item>
-            <Typography variant="h4">Välj vecka</Typography>
+            <Typography variant="h5">Välj vecka för er gemensamma planering</Typography>
           </Grid>
           {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
             Klicka på <b>Räkna ut schemat</b> och testa igen.
