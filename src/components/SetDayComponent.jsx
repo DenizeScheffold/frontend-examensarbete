@@ -11,6 +11,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 import FormControl from "@mui/material/FormControl";
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom'
@@ -42,14 +44,14 @@ function SetDay() {
 
   const handleCheckNo = (dayId) => {
     setDayIdValue(dayId);
-    setChecked(!checked);
+    setChecked(checked);
     setPossible(checked);
     console.log("the result: ", possibleValue, dayIdValue)
   }
   const handleCheck = (dayId) => {
 
     setDayIdValue(dayId);
-    setChecked(!checked);
+    setChecked(checked);
     setPossible(!checked);
     console.log("the result: ", possibleValue, dayIdValue)
   };
@@ -58,7 +60,7 @@ function SetDay() {
 
   React.useEffect(() => {
     loadSetDay();
-  },[value]);
+  }, [value]);
 
   const loadSetDay = async () => {
     await axios.get(
@@ -83,15 +85,15 @@ function SetDay() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("the result in submit: ", possibleValue, dayIdValue)
-    if(axios.patch(`http://localhost:8080/api/editDay/${dayIdValue}`,
+    if (axios.patch(`http://localhost:8080/api/editDay/${dayIdValue}`,
       {
         dayId: dayIdValue, possible: possibleValue
-      }, {})){
-        setOnSucessMessage(true);
-      } else{
-        setOnSucessMessage(false);
-      }
-      
+      }, {})) {
+      setOnSucessMessage(true);
+    } else {
+      setOnSucessMessage(false);
+    }
+
     navigate(`/setdays`)
   };
 
@@ -113,7 +115,7 @@ function SetDay() {
             <Typography variant="h4">Välj vecka</Typography>
           </Grid>
           {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
-            Du har redan planerat dessa dagar, dessa kan du hitta på SE ER PLAN.
+            Du har redan planerat denna veckan och kan hitta resultatet på SE ER PLAN.
             <br /> Veckor som finns tillgängliga för dig är 2-4.
           </div>}
           <Grid item sx={{ width: 0.5 }}>
@@ -132,9 +134,9 @@ function SetDay() {
         </Grid>
       </form>
 
-      
+
       <form onSubmit={handleSubmit}>
-      <Grid
+        <Grid
           container
           direction="column"
           justifyContent="space-between"
@@ -144,9 +146,9 @@ function SetDay() {
           marginLeft="4%"
           spacing={2}
         >
-      {onSuccessMessage && <div className="successmessage" style={{color: 'green'}}>Aktivitet sparades!
+          {onSuccessMessage && <div className="successmessage" style={{ color: 'green' }}>Aktivitet sparades!
           </div>}
-          </Grid>
+        </Grid>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="a dense table">
             <TableHead>
@@ -171,20 +173,26 @@ function SetDay() {
                   <TableCell align="right">{day.dayDate}</TableCell>
                   <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}
                     <TableCell component="th" scope="row">
-                      
-                      Ja
-                      <Checkbox
-                        key={"possible"}
-                        onChange={() => handleCheck(day.dayId)}
-                        inputProps={{ 'aria-label': 'controlled' }} label="possible"
-                      />
 
-                      Nej  
-                      <Checkbox
-                        key={"notPossible"}
+                      <FormGroup>
+                        <FormControlLabel control={
+
+                          <Checkbox
+                            key={"possible"}
+                        onChange={() => handleCheck(day.dayId)}
+                        inputProps={{ 'aria-label': 'controlled' }} />} label="possible"
+                        />
+
+                        Nej    
+                          <FormControlLabel control={
+                            <Checkbox
+                              key={"notPossible"}
                         onChange={() => handleCheckNo(day.dayId)}
-                        inputProps={{ 'aria-label': 'controlled' }} label="notPossible"
-                      />
+                        inputProps={{ 'aria-label': 'controlled' }} />} label="notPossible"
+                          />
+                          
+                        </FormGroup>
+                          
 
                     </TableCell>
                     {/*    <Checkbox
@@ -208,9 +216,9 @@ function SetDay() {
             </TableBody>
           </Table>
         </TableContainer>
-    
+
       </form>
-    
+
     </div>
   );
 }
