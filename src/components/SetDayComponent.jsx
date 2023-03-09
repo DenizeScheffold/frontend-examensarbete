@@ -42,15 +42,15 @@ function SetDay() {
 
   const handleCheckNo = (dayId) => {
     setDayIdValue(dayId);
-    setChecked(checked);
-    setPossible(!checked);
+    setChecked(!checked);
+    setPossible(checked);
     console.log("the result: ", possibleValue, dayIdValue)
   }
   const handleCheck = (dayId) => {
 
     setDayIdValue(dayId);
     setChecked(!checked);
-    setPossible(checked);
+    setPossible(!checked);
     console.log("the result: ", possibleValue, dayIdValue)
   };
 
@@ -171,13 +171,15 @@ function SetDay() {
                   <TableCell align="right">{day.dayDate}</TableCell>
                   <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}
                     <TableCell component="th" scope="row">
+                      
                       Ja
                       <Checkbox
                         key={"possible"}
                         onChange={() => handleCheck(day.dayId)}
                         inputProps={{ 'aria-label': 'controlled' }} label="possible"
                       />
-                      Nej
+
+                      Nej  
                       <Checkbox
                         key={"notPossible"}
                         onChange={() => handleCheckNo(day.dayId)}

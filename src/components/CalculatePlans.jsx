@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 function CalculatePlans() {
 
   const startCalc = async (e) => {
+    console.log("try to process days...")
     const result = await axios.get(
       `http://localhost:8080/api/getPlanForProcessUser`,
       {},
