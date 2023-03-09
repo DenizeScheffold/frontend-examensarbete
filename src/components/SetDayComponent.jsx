@@ -116,7 +116,7 @@ function SetDay() {
           </Grid>
           {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
             Du har redan planerat denna veckan och kan hitta resultatet på SE ER PLAN.
-            <br /> Veckor som finns tillgängliga för dig är 2-4.
+            <br /> Veckor som finns tillgängliga i denna demo är 2-8.
           </div>}
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
@@ -153,54 +153,37 @@ function SetDay() {
           <Table sx={{ minWidth: 650 }} aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Ditt Id</TableCell>
                 <TableCell align="right">Day Id</TableCell>
                 <TableCell align="right">Vecka</TableCell>
                 <TableCell align="right">Datum</TableCell>
-                <TableCell align="right">Kryssa i om du kan</TableCell>
-                <TableCell align="right">Klicka när du är klar</TableCell>
+                <TableCell align="right">Kryssa i och klicka på klar</TableCell>
               </TableRow>
             </TableHead>
 
             <TableBody>
               {dayInfo.map((day) => (
                 <TableRow>
-                  <TableCell component="th" scope="row">
-                    {day.userId}
-                  </TableCell>
                   <TableCell align="right">{day.dayId}</TableCell>
                   <TableCell align="right">{day.weekNumber}</TableCell>
                   <TableCell align="right">{day.dayDate}</TableCell>
-                  <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}
+                  <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}</TableCell>
                     <TableCell component="th" scope="row">
-
-                      <FormGroup>
+                      <FormGroup row>
                         <FormControlLabel control={
-
                           <Checkbox
                             key={"possible"}
-                        onChange={() => handleCheck(day.dayId)}
-                        inputProps={{ 'aria-label': 'controlled' }} />} label="possible"
+                            onChange={() => handleCheck(day.dayId)}
+                            inputProps={{ 'aria-label': 'controlled' }} />} label="Kan"
                         />
-
-                        Nej    
-                          <FormControlLabel control={
-                            <Checkbox
-                              key={"notPossible"}
-                        onChange={() => handleCheckNo(day.dayId)}
-                        inputProps={{ 'aria-label': 'controlled' }} />} label="notPossible"
-                          />
-                          
-                        </FormGroup>
-                          
-
+                        <FormControlLabel control={
+                          <Checkbox
+                            key={"notPossible"}
+                            onChange={() => handleCheckNo(day.dayId)}
+                            inputProps={{ 'aria-label': 'controlled' }} />} label="Kan inte"
+                        />
+                      </FormGroup>
                     </TableCell>
-                    {/*    <Checkbox
-                      key={day.dayId}
-                      onChange={() => handleCheck(day.dayId)}
-                      inputProps={{ 'aria-label': 'controlled' }} label="possible"
-                    /> */}
-                  </TableCell>
+            
                   <TableCell align="right">
                     <Button
                       size="small"
