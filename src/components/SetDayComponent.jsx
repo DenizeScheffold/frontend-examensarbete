@@ -14,8 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom'
-import { Button, FormControlLabel } from "@mui/material";
-import { useForm, Controller } from "react-hook-form";
+import { Button } from "@mui/material";
 
 function SetDay() {
 
@@ -36,9 +35,8 @@ function SetDay() {
 
   const [onSuccessMessage, setOnSucessMessage] = React.useState(false)
 
-  const { control } = useForm();
 
-   const handleChange = (prop) => (e) => {
+  const handleChange = (prop) => (e) => {
     setValue({ ...value, [prop]: e.target.value });
   };
 
@@ -60,7 +58,7 @@ function SetDay() {
 
   React.useEffect(() => {
     loadSetDay();
-  }, [value]);
+  },[value]);
 
   const loadSetDay = async () => {
     await axios.get(
@@ -85,15 +83,15 @@ function SetDay() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("the result in submit: ", possibleValue, dayIdValue)
-    if (axios.patch(`http://localhost:8080/api/editDay/${dayIdValue}`,
+    if(axios.patch(`http://localhost:8080/api/editDay/${dayIdValue}`,
       {
         dayId: dayIdValue, possible: possibleValue
-      }, {})) {
-      setOnSucessMessage(true);
-    } else {
-      setOnSucessMessage(false);
-    }
-
+      }, {})){
+        setOnSucessMessage(true);
+      } else{
+        setOnSucessMessage(false);
+      }
+      
     navigate(`/setdays`)
   };
 
@@ -134,9 +132,9 @@ function SetDay() {
         </Grid>
       </form>
 
-
+      
       <form onSubmit={handleSubmit}>
-        <Grid
+      <Grid
           container
           direction="column"
           justifyContent="space-between"
@@ -146,9 +144,9 @@ function SetDay() {
           marginLeft="4%"
           spacing={2}
         >
-          {onSuccessMessage && <div className="successmessage" style={{ color: 'green' }}>Aktivitet sparades!
+      {onSuccessMessage && <div className="successmessage" style={{color: 'green'}}>Aktivitet sparades!
           </div>}
-        </Grid>
+          </Grid>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="a dense table">
             <TableHead>
@@ -173,31 +171,21 @@ function SetDay() {
                   <TableCell align="right">{day.dayDate}</TableCell>
                   <TableCell align="right">{day.activity === 1 ? <p>Lämna</p> : <p>Hämta</p>}
                     <TableCell component="th" scope="row">
-
-                      <Controller
-                        control={control}
-                        name="ReactCheck"
-                        render={({ field: { value, ...field } }) => (
-
-                          
-                          <Checkbox
-                            {...field}
-                            checked={value}
-                            key={"possible"}
-                            onChange={() => handleCheck(day.dayId)}
-                            inputProps={{ 'aria-label': 'controlled' }} label="possible"
-                          />
-
-                        )}
+                      
+                      Ja
+                      <Checkbox
+                        key={"possible"}
+                        onChange={() => handleCheck(day.dayId)}
+                        inputProps={{ 'aria-label': 'controlled' }} label="possible"
                       />
 
-
-                     {/*  <Checkbox
+                      Nej  
+                      <Checkbox
                         key={"notPossible"}
                         onChange={() => handleCheckNo(day.dayId)}
                         inputProps={{ 'aria-label': 'controlled' }} label="notPossible"
                       />
- */}
+
                     </TableCell>
                     {/*    <Checkbox
                       key={day.dayId}
@@ -220,9 +208,9 @@ function SetDay() {
             </TableBody>
           </Table>
         </TableContainer>
-
+    
       </form>
-
+    
     </div>
   );
 }
