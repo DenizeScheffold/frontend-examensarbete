@@ -1,9 +1,5 @@
-//Ask user to select a week. 
-//Make call to database with userid + week + hsa value in possible
-
-
 import * as React from "react";
-import axios from "../api/ApiClient";
+import axios from "./api/ApiClient";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -16,8 +12,8 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import CalculatePlans from "./CalculatePlans";
-import UserName from "./UsernameComponent";
+import CalculatePlans from "./components/CalculatePlans";
+import UserName from "./components/UsernameComponent";
 
 function ViewWeek() {
   const [dayInfo, setDayInfo] = React.useState([]
@@ -36,7 +32,7 @@ function ViewWeek() {
 
   React.useEffect(() => {
     loadProcessedDays();
-  }
+  },[values]
   );
 
 
