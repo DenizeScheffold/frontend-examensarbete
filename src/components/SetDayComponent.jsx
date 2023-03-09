@@ -153,9 +153,9 @@ function SetDay() {
           <Table sx={{ minWidth: 650 }} aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell align="right">Day Id</TableCell>
-                <TableCell align="right">Vecka</TableCell>
-                <TableCell align="right">Datum</TableCell>
+                <TableCell align="center">Day Id</TableCell>
+                <TableCell align="center">Vecka</TableCell>
+                <TableCell align="center">Datum</TableCell>
                 <TableCell align="right">Kryssa i och klicka på klar</TableCell>
               </TableRow>
             </TableHead>
@@ -163,10 +163,10 @@ function SetDay() {
             <TableBody>
               {dayInfo.map((day) => (
                 <TableRow>
-                  <TableCell align="right">{day.dayId}</TableCell>
-                  <TableCell align="right">{day.weekNumber}</TableCell>
-                  <TableCell align="right">{day.dayDate}</TableCell>
-                  <TableCell align="right">{day.activity === 1 ? <p><b>Lämna</b></p> : <p><b>Hämta</b></p>}</TableCell>
+                  <TableCell align="center">{day.dayId}</TableCell>
+                  <TableCell align="center">{day.weekNumber}</TableCell>
+                  <TableCell align="center">{day.dayDate}</TableCell>
+                  <TableCell align="center">{day.activity === 1 ? <p><b>Lämna</b></p> : <p><b>Hämta</b></p>}</TableCell>
                     <TableCell component="th" scope="row">
                       <FormGroup row>
                         <FormControlLabel control={

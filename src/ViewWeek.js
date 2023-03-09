@@ -100,9 +100,9 @@ function ViewWeek() {
           <TableHead>
             <TableRow>
 
-              <TableCell align="right">Datum</TableCell>
-              <TableCell align="right">Lämna</TableCell>
-              <TableCell align="right">Hämta</TableCell>
+              <TableCell align="center"><b>Datum</b></TableCell>
+              <TableCell align="center"><b>Lämna</b></TableCell>
+              <TableCell align="center"><b>Hämta</b></TableCell>
             </TableRow>
           </TableHead>
 
@@ -110,11 +110,11 @@ function ViewWeek() {
             {dayInfo.map((day) => (
               <TableRow>
 
-                <TableCell align="right">{day.dayDate}</TableCell>
+                <TableCell align="center">{day.dayDate}</TableCell>
 
-                <TableCell align="right">{day.activity === 1 && <UserName userId={day.userId} />} </TableCell>
+                <TableCell align="center">{day.activity === 1 && <UserName userId={day.userId} />} </TableCell>
 
-                <TableCell align="right">{day.activity === 2 && <UserName userId={day.userId} />}</TableCell>
+                <TableCell align="center">{day.activity === 2 && <UserName userId={day.userId} />}</TableCell>
               </TableRow>
             ))}
           </TableBody>
