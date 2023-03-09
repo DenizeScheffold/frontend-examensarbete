@@ -115,8 +115,8 @@ function SetDay() {
             <Typography variant="h4">Välj vecka</Typography>
           </Grid>
           {showErrorMessage && <div className="errorMessage">Inga dagar kan visas för veckan.
-            Du har redan planerat denna veckan och kan hitta resultatet på SE ER PLAN.
-            <br /> Veckor som finns tillgängliga i denna demo är 2-8.
+            Dagarna är redan planerade och finns på <b>Se er plan </b> i huvudmenyn.
+            <br />   Veckor som finns i demo 2-8.
           </div>}
           <Grid item sx={{ width: 0.5 }}>
             <FormControl fullWidth>
