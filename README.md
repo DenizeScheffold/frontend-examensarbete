@@ -6,11 +6,14 @@ Kanban board: https://trello.com/b/EErJuPSK/examensarbete
 
 ----------------------------
 
-Clone backend repo: 
+**To run backend:**
+
+Clone repo: 
 
 https://github.com/DenizeScheffold/examensarbete
 
-*To run:* set up Mysql database or use Docker via command prompt:
+
+*To set up via command propt* (Mysql database in Docker):
 
 
 docker pull mysql/mysql-server:latest
@@ -33,7 +36,7 @@ In IDE: *Build and Run application*
 -----------------------
 
 
-*To run frontend:* 
+**To run frontend:** 
 
 clone repo: 
 
@@ -41,7 +44,7 @@ https://github.com/DenizeScheffold/kindi.git
 
 --
 
-*To set up in command prompt:* 
+*To set up via command prompt:* 
 
 npm install
 
