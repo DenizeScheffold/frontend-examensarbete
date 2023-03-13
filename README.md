@@ -10,7 +10,7 @@ Clone backend repo:
 
 https://github.com/DenizeScheffold/examensarbete
 
-To run: set up Mysql database or use Docker via cmd:
+*To run:* set up Mysql database or use Docker via command prompt:
 
 
 docker pull mysql/mysql-server:latest
@@ -26,6 +26,9 @@ mysql -uroot -proot
 
 
 create database examensarbete;
+
+
+In IDE: *Build and Run application*
 
 -----------------------
 
