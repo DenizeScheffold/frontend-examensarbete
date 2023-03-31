@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LogoutComponent from "./LogoutComponent";
 import HeaderComponent from "./HeaderComponent";
 import WelcomeComponent from "./WelcomeComponent";
-import ViewWeek from "../ViewWeek";
 import LoginComponent from "./LoginComponent";
 import Signup from "../Signup";
 import Profile from "../Profile";
 import EditProfile from "../EditProfile";
 import SetDay from "./SetDayComponent";
+import ViewWeek from "../ViewWeek";
 import AuthProvider, { useAuth } from "../context/AuthContext";
 
 import "./WeekPlanner.css";
