@@ -1,5 +1,5 @@
 import * as React from "react";
-import axios from "./api/ApiClient";
+import axios from "../api/ApiClient";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,8 +12,8 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import CalculatePlans from "./components/CalculatePlans";
-import UserName from "./components/UsernameComponent";
+import CalculatePlans from "./CalculatePlans";
+import UserName from "./UsernameComponent";
 
 
 function ViewWeek() {
@@ -39,6 +39,7 @@ function ViewWeek() {
 
   const loadProcessedDays = async () => {
     await axios.get(
+    //get-request fetch only days that are set and only the activities (hämta/lämna) that have parents assigned to them. 
       `http://localhost:8080/api/getCompletePlanOnlyTrueBothParents/${values.weekNumber}`,
       {},
       {}
@@ -113,9 +114,14 @@ function ViewWeek() {
            
                 <TableCell align="center" key={day.dayDate}> {day.dayDate}</TableCell>
      
-                <TableCell align="center" key={day.activity}> {day.activity === 1 && <UserName userId={day.userId}/>} </TableCell>
+                <TableCell align="center" key={day.activity}> 
+                {day.activity === 1 && <UserName userId={day.userId}/>} 
+                </TableCell>
                
-                <TableCell align="center"key={day.userId}>{day.activity === 2 && <UserName userId={day.userId}/> }</TableCell>
+                <TableCell align="center"key={day.userId}>
+                  {day.activity === 2 && <UserName userId={day.userId}/> }
+                  </TableCell>
+
               </TableRow>
             )}
           </TableBody>
