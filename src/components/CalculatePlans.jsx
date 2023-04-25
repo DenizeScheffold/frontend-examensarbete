@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "../api/ApiClient"
 import { Button } from "@mui/material";
-
+import Grid from "@mui/material/Grid";
 
 
 function CalculatePlans() {
@@ -21,7 +21,17 @@ function CalculatePlans() {
   return (
 
     <div className="App">
-
+  <Grid
+          container
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          maxWidth="90%"
+          marginTop="auto"
+          marginLeft="4%"
+          marginBottom="5%"
+          spacing={2}
+        >
       <Button
         fullWidth
         variant="contained"
@@ -31,7 +41,7 @@ function CalculatePlans() {
         Räkna ut schemat
       </Button>
 
-
+      </Grid>
     </div>
   );
 
